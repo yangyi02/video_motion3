@@ -112,10 +112,10 @@ class BaseBiDemo(object):
             ave_base_loss = sum(base_loss) / float(len(base_loss))
             logging.info('epoch %d, train loss: %.2f, average train loss: %.2f, base loss: %.2f',
                          epoch, loss.data[0], ave_train_loss, ave_base_loss)
-            if (epoch+1) % self.test_interval == 0:
+            if (epoch + 1) % self.test_interval == 0:
                 logging.info('epoch %d, testing', epoch)
                 self.validate()
-            if (epoch+1) % self.save_interval == 0:
+            if (epoch + 1) % self.save_interval == 0:
                 logging.info('epoch %d, saving model', epoch)
                 with open(os.path.join(self.save_dir, '%d.pth' % epoch), 'w') as handle:
                     torch.save(self.model.state_dict(), handle)
@@ -246,11 +246,11 @@ class BaseBiDemo(object):
                 0.5 * im_input_b[:, -self.im_channel:, :, :]
             base_loss.append(torch.abs(im_base - im_output).sum().data[0])
             flow_f = self.motion2flow(m_mask_f)
-            flow_b = self.motion2flow(m_mask_b)
             epe = (flow_f - gt_motion_f) * (flow_f - gt_motion_f)
             epe = torch.sqrt(epe.sum(1))
             epe = epe.sum() / epe.numel()
             test_epe.append(epe.cpu().data[0])
+            flow_b = self.motion2flow(m_mask_b)
             epe = (flow_b - gt_motion_b) * (flow_b - gt_motion_b)
             epe = torch.sqrt(epe.sum(1))
             epe = epe.sum() / epe.numel()
