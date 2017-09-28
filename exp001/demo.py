@@ -8,9 +8,6 @@ from torch.autograd import Variable
 import torch.nn.functional as F
 
 from learning_args import parse_args
-from data.synthetic.mnist_bidata import MnistData
-from data.synthetic.box_bidata import BoxData
-from data.synthetic.box_bidata_complex import BoxDataComplex
 from base_bidemo import BaseBiDemo
 from model import Net, GtNet
 from visualizer import Visualizer
@@ -79,13 +76,13 @@ class Demo(BaseBiDemo):
             ave_base_loss = sum(base_loss) / float(len(base_loss))
             logging.info('epoch %d, train loss: %.2f, average train loss: %.2f, base loss: %.2f',
                          epoch, loss.data[0], ave_train_loss, ave_base_loss)
-            if (epoch + 1) % self.test_interval == 0:
-                logging.info('epoch %d, testing', epoch)
-                self.validate()
             if (epoch + 1) % self.save_interval == 0:
                 logging.info('epoch %d, saving model', epoch)
                 with open(os.path.join(self.save_dir, '%d.pth' % epoch), 'w') as handle:
                     torch.save(self.model.state_dict(), handle)
+            if (epoch + 1) % self.test_interval == 0:
+                logging.info('epoch %d, testing', epoch)
+                self.validate()
 
     def test(self):
         base_loss, test_loss = [], []
@@ -107,9 +104,9 @@ class Demo(BaseBiDemo):
             im_input_b = im[:, :self.num_inputs:-1, :, :, :].reshape(
                 self.batch_size, -1, self.im_size, self.im_size)
             im_output = im[:, self.num_inputs, :, :, :]
-            im_input_f = Variable(torch.from_numpy(im_input_f).float())
-            im_input_b = Variable(torch.from_numpy(im_input_b).float())
-            im_output = Variable(torch.from_numpy(im_output).float())
+            im_input_f = Variable(torch.from_numpy(im_input_f).float(), volatile=True)
+            im_input_b = Variable(torch.from_numpy(im_input_b).float(), volatile=True)
+            im_output = Variable(torch.from_numpy(im_output).float(), volatile=True)
             if torch.cuda.is_available():
                 im_input_f, im_input_b = im_input_f.cuda(), im_input_b.cuda()
                 im_output = im_output.cuda()
@@ -188,9 +185,9 @@ class Demo(BaseBiDemo):
             gt_motion_label_b = motion_label_r[:, self.num_inputs + 1, :, :, :]
             gt_depth_f = depth[:, self.num_inputs - 1, :, :]
             gt_depth_b = depth[:, self.num_inputs + 1, :, :]
-            im_input_f = Variable(torch.from_numpy(im_input_f).float())
-            im_input_b = Variable(torch.from_numpy(im_input_b).float())
-            im_output = Variable(torch.from_numpy(im_output).float())
+            im_input_f = Variable(torch.from_numpy(im_input_f).float(), volatile=True)
+            im_input_b = Variable(torch.from_numpy(im_input_b).float(), volatile=True)
+            im_output = Variable(torch.from_numpy(im_output).float(), volatile=True)
             gt_motion_f = Variable(torch.from_numpy(gt_motion_f).float())
             gt_motion_b = Variable(torch.from_numpy(gt_motion_b).float())
             gt_motion_label_f = Variable(torch.from_numpy(gt_motion_label_f))

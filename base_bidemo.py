@@ -149,9 +149,9 @@ class BaseBiDemo(object):
             im_input_b = im[:, :self.num_inputs:-1, :, :, :].reshape(
                 self.batch_size, -1, self.im_size, self.im_size)
             im_output = im[:, self.num_inputs, :, :, :]
-            im_input_f = Variable(torch.from_numpy(im_input_f).float())
-            im_input_b = Variable(torch.from_numpy(im_input_b).float())
-            im_output = Variable(torch.from_numpy(im_output).float())
+            im_input_f = Variable(torch.from_numpy(im_input_f).float(), volatile=True)
+            im_input_b = Variable(torch.from_numpy(im_input_b).float(), volatile=True)
+            im_output = Variable(torch.from_numpy(im_output).float(), volatile=True)
             if torch.cuda.is_available():
                 im_input_f, im_input_b = im_input_f.cuda(), im_input_b.cuda()
                 im_output = im_output.cuda()
@@ -224,9 +224,9 @@ class BaseBiDemo(object):
             gt_motion_b = motion_r[:, self.num_inputs + 1, :, :, :]
             gt_motion_label_f = motion_label[:, self.num_inputs - 1, :, :, :]
             gt_motion_label_b = motion_label_r[:, self.num_inputs + 1, :, :, :]
-            im_input_f = Variable(torch.from_numpy(im_input_f).float())
-            im_input_b = Variable(torch.from_numpy(im_input_b).float())
-            im_output = Variable(torch.from_numpy(im_output).float())
+            im_input_f = Variable(torch.from_numpy(im_input_f).float(), volatile=True)
+            im_input_b = Variable(torch.from_numpy(im_input_b).float(), volatile=True)
+            im_output = Variable(torch.from_numpy(im_output).float(), volatile=True)
             gt_motion_f = Variable(torch.from_numpy(gt_motion_f).float())
             gt_motion_b = Variable(torch.from_numpy(gt_motion_b).float())
             gt_motion_label_f = Variable(torch.from_numpy(gt_motion_label_f))

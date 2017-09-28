@@ -113,13 +113,13 @@ class BaseDemo(object):
             ave_base_loss = sum(base_loss) / float(len(base_loss))
             logging.info('epoch %d, train loss: %.2f, average train loss: %.2f, base loss: %.2f',
                          epoch, loss.data[0], ave_train_loss, ave_base_loss)
-            if (epoch+1) % self.test_interval == 0:
-                logging.info('epoch %d, testing', epoch)
-                self.validate()
             if (epoch+1) % self.save_interval == 0:
                 logging.info('epoch %d, saving model', epoch)
                 with open(os.path.join(self.save_dir, '%d.pth' % epoch), 'w') as handle:
                     torch.save(self.model.state_dict(), handle)
+            if (epoch+1) % self.test_interval == 0:
+                logging.info('epoch %d, testing', epoch)
+                self.validate()
 
     def validate(self):
         improve_percent = self.test()
@@ -149,8 +149,8 @@ class BaseDemo(object):
                 sys.exit()
             im_input = im[:, :-1, :, :, :].reshape(self.batch_size, -1, self.im_size, self.im_size)
             im_output = im[:, -1, :, :, :]
-            im_input = Variable(torch.from_numpy(im_input).float())
-            im_output = Variable(torch.from_numpy(im_output).float())
+            im_input = Variable(torch.from_numpy(im_input).float(), volatile=True)
+            im_output = Variable(torch.from_numpy(im_output).float(), volatile=True)
             if torch.cuda.is_available():
                 im_input, im_output = im_input.cuda(), im_output.cuda()
             im_pred, m_mask, disappear, appear = self.model(im_input)
@@ -208,9 +208,9 @@ class BaseDemo(object):
             im_input = im[:, :-1, :, :, :].reshape(self.batch_size, -1, self.im_size, self.im_size)
             im_output = im[:, -1, :, :, :]
             gt_motion = motion[:, -2, :, :, :]
-            im_input = Variable(torch.from_numpy(im_input).float())
-            im_output = Variable(torch.from_numpy(im_output).float())
-            gt_motion = Variable(torch.from_numpy(gt_motion).float())
+            im_input = Variable(torch.from_numpy(im_input).float(), volatile=True)
+            im_output = Variable(torch.from_numpy(im_output).float(), volatile=True)
+            gt_motion = Variable(torch.from_numpy(gt_motion).float(), volatile=True)
             if torch.cuda.is_available():
                 im_input, im_output = im_input.cuda(), im_output.cuda()
                 gt_motion = gt_motion.cuda()
