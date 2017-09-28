@@ -4,16 +4,17 @@ import matplotlib.pyplot as plt
 from PIL import Image
 import cv2
 
-from visualize.base_visualizer_bidirect import BaseVisualizerBidirect
+from visualize.base_bivisualizer import BaseVisualizer
 from visualize import flowlib
 
 
-class Visualizer(BaseVisualizerBidirect):
+class Visualizer(BaseVisualizer):
     def __init__(self, args, reverse_m_dict):
         super(Visualizer, self).__init__(args, reverse_m_dict)
-        self.num_inputs = (self.num_frame - 1) / 2
 
-    def visualize_result(self, im_input_f, im_input_b, im_output, im_pred, pred_motion_f, gt_motion_f, depth_f, attn_f, pred_motion_b, gt_motion_b, depth_b, attn_b, file_name='tmp.png', idx=0):
+    def visualize_result(self, im_input_f, im_input_b, im_output, im_pred, pred_motion_f,
+                         gt_motion_f, depth_f, attn_f, pred_motion_b, gt_motion_b, depth_b, attn_b,
+                         file_name='tmp.png', idx=0):
         width, height = self.get_img_size(4, max(self.num_frame + 1, 7))
         im_channel = self.im_channel
         img = numpy.ones((height, width, 3))
@@ -89,22 +90,36 @@ class Visualizer(BaseVisualizerBidirect):
         depth = depth * 1.0 / depth.max()
         cmap = plt.get_cmap('jet')
         depth_map = cmap(depth)[:, :, 0:3]
-        x1, y1, x2, y2 = self.get_img_coordinate(3, 4)
+        x1, y1, x2, y2 = self.get_img_coordinate(3, 3)
         img[y1:y2, x1:x2, :] = depth_map
 
         attn = attn_f[idx].cpu().data.numpy().squeeze()
         cmap = plt.get_cmap('jet')
         attn_map = cmap(attn)[:, :, 0:3]
-        x1, y1, x2, y2 = self.get_img_coordinate(3, 7)
+        x1, y1, x2, y2 = self.get_img_coordinate(3, 4)
         img[y1:y2, x1:x2, :] = attn_map
 
         pred_motion = pred_motion_b[idx].cpu().data.numpy().transpose(1, 2, 0)
-        optical_flow = flowlib.visualize_flow(pred_motion, self.m_range)
+        optical_flow = flowlib.visualize_flow(pred_motion)
         x1, y1, x2, y2 = self.get_img_coordinate(4, 1)
         img[y1:y2, x1:x2, :] = optical_flow / 255.0
 
-        gt_motion = gt_motion_b[idx].cpu().data.numpy().transpose(1, 2, 0)
-        optical_flow = flowlib.visualize_flow(gt_motion, self.m_range)
+        if gt_motion_b is None:
+            im = prev_im * 255.0
+            if im_channel == 1:
+                prvs_frame = im.astype(numpy.uint8)
+            elif im_channel == 3:
+                prvs_frame = cv2.cvtColor(im.astype(numpy.uint8), cv2.COLOR_RGB2GRAY)
+            im = im_output * 255.0
+            if im_channel == 1:
+                next_frame = im.astype(numpy.uint8)
+            elif im_channel == 3:
+                next_frame = cv2.cvtColor(im.astype(numpy.uint8), cv2.COLOR_RGB2GRAY)
+            flow = cv2.calcOpticalFlowFarneback(prvs_frame, next_frame, None, 0.5, 5, 5, 3, 5, 1.1, 0)
+            optical_flow = flowlib.visualize_flow(flow)
+        else:
+            gt_motion = gt_motion_b[idx].cpu().data.numpy().transpose(1, 2, 0)
+            optical_flow = flowlib.visualize_flow(gt_motion)
         x1, y1, x2, y2 = self.get_img_coordinate(4, 2)
         img[y1:y2, x1:x2, :] = optical_flow / 255.0
 
@@ -112,13 +127,13 @@ class Visualizer(BaseVisualizerBidirect):
         depth = depth * 1.0 / depth.max()
         cmap = plt.get_cmap('jet')
         depth_map = cmap(depth)[:, :, 0:3]
-        x1, y1, x2, y2 = self.get_img_coordinate(4, 6)
+        x1, y1, x2, y2 = self.get_img_coordinate(4, 3)
         img[y1:y2, x1:x2, :] = depth_map
 
         attn = attn_b[0].cpu().data.numpy().squeeze()
         cmap = plt.get_cmap('jet')
         attn_map = cmap(attn)[:, :, 0:3]
-        x1, y1, x2, y2 = self.get_img_coordinate(4, 7)
+        x1, y1, x2, y2 = self.get_img_coordinate(4, 4)
         img[y1:y2, x1:x2, :] = attn_map
 
         if self.save_display:
