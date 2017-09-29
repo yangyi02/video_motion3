@@ -9,6 +9,7 @@
 - Color image
 - Depth has 2 discrete level
 - Bidirectional model
+- Loss do not penalize image boundary
 
 ### Results
 
