@@ -12,7 +12,7 @@ logging.basicConfig(format='[%(levelname)s %(asctime)s %(filename)s:%(lineno)s] 
 class MnistData(SyntheticBiData):
     def __init__(self, args):
         super(MnistData, self).__init__(args)
-        self.name = 'mnist_bidirect'
+        self.name = 'mnist'
         script_dir = os.path.dirname(__file__)  # absolute dir the script is in
         self.file_name = os.path.join(script_dir, 'mnist.h5')
         self.train_images, self.test_images = self.load_mnist()
