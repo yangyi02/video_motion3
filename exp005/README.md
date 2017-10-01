@@ -1,16 +1,15 @@
-## Predict Depth, Predict Appear Pixel Value - 3 Frame 
+## Predict Depth, Predict Appear Pixel Value - 2 Frame 
 
 - Occlusion modeling, use neural net to predict discrete depth 
 - Predict depth using only current frame with another network
 - Predict motion for every pixel
 - Photometric loss for every pixel
 - Input 2 frames
-- Output is 3rd frame
+- Output is 2nd frame, the output is also an input of itself
 - Color image
 - Depth has 2 discrete level
 - Predict pixel value for the new appearing location
 - One more layer
-- Motion range is 4
 
 ### Results
 
@@ -18,12 +17,12 @@
 
 | Exp  | Test | Gt   | EPE  | Note |
 | ---- | ---- | ---- | ---- | ---- | 
-| 01 |  |  |  | box, m_range=4, image_size=32, num_frame=3, bg_move |
-| 01-1 |  |  |  | box_complex, m_range=4, image_size=32, num_frame=3, bg_move |
-| 02 |  |  |  | mnist, m_range=4, image_size=32, num_frame=3, bg_move |
-| 03 |  |  |  | robot64, m_range=4, image_size=64, num_frame=3 |
-| 04 |  |  |  | mpii64, m_range=4, image_size=64, num_frame=3 |
-| 05 |  |  |  | nyuv2, m_range=4, image_size=64, num_frame=3 |
+| 01   |  |  |  | box, m_range=2, image_size=32, num_frame=3, bg_move |
+| 02   |  |  |  | box_complex, m_range=2, image_size=32, num_frame=3, bg_move |
+| 03   |  |  |  | mnist, m_range=2, image_size=32, num_frame=3, bg_move |
+| 04   |  |  |  | robot64, m_range=2, image_size=64, num_frame=3 |
+| 05   |  |  |  | mpii64, m_range=2, image_size=64, num_frame=3 |
+| 06   |  |  |  | nyuv2, m_range=2, image_size=64, num_frame=3 |
 
 ### Take Home Message
 

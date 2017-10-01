@@ -23,9 +23,9 @@ class Demo(BaseDemo):
         self.visualizer = Visualizer(args, self.data.reverse_m_dict)
 
     def init_model(self, m_kernel):
-        self.model = Net(self.im_size, self.im_size, self.im_channel, self.num_frame - 1,
+        self.model = Net(self.im_size, self.im_size, self.im_channel, self.num_frame,
                          m_kernel.shape[1], self.m_range, m_kernel)
-        self.model_gt = GtNet(self.im_size, self.im_size, self.im_channel, self.num_frame - 1,
+        self.model_gt = GtNet(self.im_size, self.im_size, self.im_channel, self.num_frame,
                               m_kernel.shape[1], self.m_range, m_kernel)
         if torch.cuda.is_available():
             # model = torch.nn.DataParallel(model).cuda()
@@ -55,7 +55,7 @@ class Demo(BaseDemo):
             im_output = Variable(torch.from_numpy(im_output).float())
             if torch.cuda.is_available():
                 im_input, im_output = im_input.cuda(), im_output.cuda()
-            im_pred, m_mask, d_mask = self.model(im_input)
+            im_pred, m_mask, d_mask = self.model(im_input, im_output)
             im_diff = im_pred - im_output
             loss = torch.abs(im_diff).sum()
             loss.backward()
@@ -98,7 +98,7 @@ class Demo(BaseDemo):
             im_output = Variable(torch.from_numpy(im_output).float(), volatile=True)
             if torch.cuda.is_available():
                 im_input, im_output = im_input.cuda(), im_output.cuda()
-            im_pred, m_mask, d_mask = self.model(im_input)
+            im_pred, m_mask, d_mask = self.model(im_input, im_output)
             im_diff = im_pred - im_output
             loss = torch.abs(im_diff).sum()
 
@@ -164,9 +164,9 @@ class Demo(BaseDemo):
                 gt_motion = gt_motion.cuda()
                 gt_depth = gt_depth.cuda()
             if self.data.name in ['box', 'mnist', 'box_complex']:
-                im_pred, m_mask, d_mask = self.model_gt(im_input, gt_motion_label, gt_depth, 'label')
+                im_pred, m_mask, d_mask = self.model_gt(im_input, im_output, gt_motion_label, gt_depth, 'label')
             elif self.data.name in['box2', 'mnist2']:
-                im_pred, m_mask, d_mask = self.model_gt(im_input, gt_motion, gt_depth)
+                im_pred, m_mask, d_mask = self.model_gt(im_input, im_output, gt_motion, gt_depth)
             im_diff = im_pred - im_output
             loss = torch.abs(im_diff).sum()
 
