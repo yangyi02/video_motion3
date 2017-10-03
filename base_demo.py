@@ -14,6 +14,7 @@ from data.synthetic.mnist_data import MnistData
 from data.synthetic.box2_data import Box2Data
 from data.synthetic.mnist2_data import Mnist2Data
 from data.real.robot64_data import Robot64Data
+from data.real.robot128_data import Robot128Data
 from data.real.mpii64_data import Mpii64Data
 from data.real.mpii64_sample import Mpii64Sample
 from data.real.nyuv2_data import Nyuv2Data
@@ -52,6 +53,8 @@ class BaseDemo(object):
             self.data = Mnist2Data(args)
         elif args.data == 'robot64':
             self.data = Robot64Data(args)
+        elif args.data == 'robot128':
+            self.data = Robot128Data(args)
         elif args.data == 'mpii64':
             self.data = Mpii64Data(args)
         elif args.data == 'mpii64_sample':
@@ -86,7 +89,7 @@ class BaseDemo(object):
                 im, _, _, _ = self.data.get_next_batch(self.data.train_images)
             elif self.data.name in ['box2', 'mnist2']:
                 im, _, _ = self.data.get_next_batch(self.data.train_images)
-            elif self.data.name in ['robot64', 'mpii64', 'nyuv2']:
+            elif self.data.name in ['robot64', 'mpii64', 'nyuv2', 'robot128']:
                 im = self.data.get_next_batch(self.data.train_images)
             else:
                 logging.error('%s data not supported' % self.data.name)
@@ -139,7 +142,7 @@ class BaseDemo(object):
                 im, motion, _, _ = self.data.get_next_batch(self.data.test_images)
             elif self.data.name in ['box2', 'mnist2']:
                 im, motion, _ = self.data.get_next_batch(self.data.test_images)
-            elif self.data.name in ['robot64', 'mpii64', 'nyuv2', 'mpii64_sample']:
+            elif self.data.name in ['robot64', 'mpii64', 'nyuv2', 'robot128']:
                 im, motion = self.data.get_next_batch(self.data.test_images), None
             elif self.data.name in ['mpii64_sample']:
                 im, motion = self.data.get_next_batch(self.data.test_images), None
