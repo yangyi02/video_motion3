@@ -1,0 +1,15 @@
+cd exp01
+sh plot_curve.sh
+cd ..
+cd exp02
+sh plot_curve.sh
+cd ..
+cd exp03
+sh plot_curve.sh
+cd ..
+cd exp04
+sh plot_curve.sh
+cd ..
+cd exp05
+sh plot_curve.sh
+cd ..

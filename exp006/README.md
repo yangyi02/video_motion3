@@ -7,7 +7,7 @@
 - Input 3 frames
 - Output is 4th frame
 - Color image
-- Depth has 3 discrete level
+- Depth has 2 discrete level
 - Predict pixel value for the new appearing location
 - One more layer
 

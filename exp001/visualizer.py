@@ -68,6 +68,7 @@ class Visualizer(BaseVisualizer):
         img[y1:y2, x1:x2, :] = optical_flow / 255.0
 
         if gt_motion_f is None:
+            prev_im = im_input_f[idx, -2*im_channel:-im_channel, :, :].cpu().data.numpy().transpose(1, 2, 0)
             im = prev_im * 255.0
             if im_channel == 1:
                 prvs_frame = im.astype(numpy.uint8)
@@ -105,6 +106,7 @@ class Visualizer(BaseVisualizer):
         img[y1:y2, x1:x2, :] = optical_flow / 255.0
 
         if gt_motion_b is None:
+            prev_im = im_input_b[idx, -2*im_channel:-im_channel, :, :].cpu().data.numpy().transpose(1, 2, 0)
             im = prev_im * 255.0
             if im_channel == 1:
                 prvs_frame = im.astype(numpy.uint8)

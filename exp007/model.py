@@ -26,17 +26,17 @@ class Net(nn.Module):
         self.bn6 = nn.BatchNorm2d(num_hidden)
         self.conv7 = nn.Conv2d(num_hidden, num_hidden, 3, 1, 1)
         self.bn7 = nn.BatchNorm2d(num_hidden)
-        self.conv8 = nn.Conv2d(num_hidden*2, num_hidden, 3, 1, 1)
+        self.conv8 = nn.Conv2d(num_hidden * 2, num_hidden, 3, 1, 1)
         self.bn8 = nn.BatchNorm2d(num_hidden)
-        self.conv9 = nn.Conv2d(num_hidden*2, num_hidden, 3, 1, 1)
+        self.conv9 = nn.Conv2d(num_hidden * 2, num_hidden, 3, 1, 1)
         self.bn9 = nn.BatchNorm2d(num_hidden)
-        self.conv10 = nn.Conv2d(num_hidden*2, num_hidden, 3, 1, 1)
+        self.conv10 = nn.Conv2d(num_hidden * 2, num_hidden, 3, 1, 1)
         self.bn10 = nn.BatchNorm2d(num_hidden)
-        self.conv11 = nn.Conv2d(num_hidden*2, num_hidden, 3, 1, 1)
+        self.conv11 = nn.Conv2d(num_hidden * 2, num_hidden, 3, 1, 1)
         self.bn11 = nn.BatchNorm2d(num_hidden)
-        self.conv12 = nn.Conv2d(num_hidden*2, num_hidden, 3, 1, 1)
+        self.conv12 = nn.Conv2d(num_hidden * 2, num_hidden, 3, 1, 1)
         self.bn12 = nn.BatchNorm2d(num_hidden)
-        self.conv13 = nn.Conv2d(num_hidden*2, num_hidden, 3, 1, 1)
+        self.conv13 = nn.Conv2d(num_hidden * 2, num_hidden, 3, 1, 1)
         self.bn13 = nn.BatchNorm2d(num_hidden)
         self.conv = nn.Conv2d(num_hidden, n_class, 3, 1, 1)
 
@@ -68,16 +68,12 @@ class Net(nn.Module):
         self.bn12_d = nn.BatchNorm2d(num_hidden)
         self.conv13_d = nn.Conv2d(num_hidden * 2, num_hidden, 3, 1, 1)
         self.bn13_d = nn.BatchNorm2d(num_hidden)
-        self.conv_d = nn.Conv2d(num_hidden, 3, 3, 1, 1)
+        self.conv_d = nn.Conv2d(num_hidden, 2, 3, 1, 1)
 
         self.conv0_v = nn.Conv2d(n_inputs*im_channel, num_hidden, 3, 1, 1)
         self.bn0_v = nn.BatchNorm2d(num_hidden)
         self.conv1_v = nn.Conv2d(num_hidden, num_hidden, 3, 1, 1)
         self.bn1_v = nn.BatchNorm2d(num_hidden)
-        self.conv2_v = nn.Conv2d(num_hidden, num_hidden, 3, 1, 1)
-        self.bn2_v = nn.BatchNorm2d(num_hidden)
-        self.conv3_v = nn.Conv2d(num_hidden, num_hidden, 3, 1, 1)
-        self.bn3_v = nn.BatchNorm2d(num_hidden)
         self.conv_v = nn.Conv2d(num_hidden, 3, 3, 1, 1)
 
         self.maxpool = nn.MaxPool2d(2, stride=2, return_indices=False, ceil_mode=False)
@@ -94,8 +90,9 @@ class Net(nn.Module):
         if torch.cuda.is_available():
             self.m_kernel = self.m_kernel.cuda()
 
-    def forward(self, im_input):
-        x = self.bn0(self.conv0(im_input))
+    def forward(self, im_input, im_output):
+        im_all = torch.cat((im_input, im_output), 1)
+        x = self.bn0(self.conv0(im_all))
         x1 = F.relu(self.bn1(self.conv1(x)))
         x2 = self.maxpool(x1)
         x2 = F.relu(self.bn2(self.conv2(x2)))
@@ -164,10 +161,8 @@ class Net(nn.Module):
         x13 = F.relu(self.bn13_d(self.conv13_d(x13)))
         d_mask = F.softmax(self.conv_d(x13))
 
-        x = F.relu(self.bn0_v(self.conv0_v(im_input)))
+        x = F.relu(self.bn0_v(self.conv0_v(im_all)))
         x = F.relu(self.bn1_v(self.conv1_v(x)))
-        x = F.relu(self.bn2_v(self.conv2_v(x)))
-        x = F.relu(self.bn3_v(self.conv3_v(x)))
         bg = F.sigmoid(self.conv_v(x))
 
         out_mask = construct_mask(m_mask, d_mask, self.m_kernel, self.m_range)
@@ -176,7 +171,7 @@ class Net(nn.Module):
 
         seg = out_mask.sum(1).unsqueeze(1)
         pred = pred * seg + bg * (1 - seg)
-        return pred, m_mask, d_mask
+        return pred, m_mask, d_mask, 1 - seg
 
 
 class GtNet(nn.Module):
@@ -191,9 +186,9 @@ class GtNet(nn.Module):
         self.m_kernel = Variable(torch.from_numpy(m_kernel).float())
         if torch.cuda.is_available():
             self.m_kernel = self.m_kernel.cuda()
-        self.n_depth = 3
+        self.n_depth = 2
 
-    def forward(self, im_input, gt_motion, gt_depth, gt_type=None):
+    def forward(self, im_input, im_output, gt_motion, gt_depth, gt_type=None):
         if gt_type == 'label':
             m_mask = self.label2mask(gt_motion)
         else:
@@ -203,7 +198,8 @@ class GtNet(nn.Module):
         out_mask = construct_mask(m_mask, d_mask, self.m_kernel, self.m_range)
         im = im_input[:, -self.im_channel:, :, :]
         pred = construct_image(im, out_mask, self.m_kernel, self.m_range)
-        return pred, m_mask, d_mask
+        seg = out_mask.sum(1).unsqueeze(1)
+        return pred, m_mask, d_mask, 1 - seg
 
     def label2mask(self, motion):
         m_mask = Variable(torch.Tensor(motion.size(0), self.n_class, motion.size(2), motion.size(3)))

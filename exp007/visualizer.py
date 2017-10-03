@@ -12,7 +12,7 @@ class Visualizer(BaseVisualizer):
     def __init__(self, args, reverse_m_dict):
         super(Visualizer, self).__init__(args, reverse_m_dict)
 
-    def visualize_result(self, im_input, im_output, im_pred, pred_motion, gt_motion, depth, file_name='tmp.png', idx=0):
+    def visualize_result(self, im_input, im_output, im_pred, pred_motion, gt_motion, depth, appear, file_name='tmp.png', idx=0):
         width, height = self.get_img_size(3, max(self.num_frame + 1, 4))
         im_channel = self.im_channel
         img = numpy.ones((height, width, 3))
@@ -73,8 +73,14 @@ class Visualizer(BaseVisualizer):
         depth = depth * 1.0 / depth.max()
         cmap = plt.get_cmap('jet')
         depth_map = cmap(depth)[:, :, 0:3]
-        x1, y1, x2, y2 = self.get_img_coordinate(3, 4)
+        x1, y1, x2, y2 = self.get_img_coordinate(3, 3)
         img[y1:y2, x1:x2, :] = depth_map
+
+        appear = appear[idx].cpu().data.numpy().squeeze()
+        cmap = plt.get_cmap('jet')
+        appear_map = cmap(appear)[:, :, 0:3]
+        x1, y1, x2, y2 = self.get_img_coordinate(3, 4)
+        img[y1:y2, x1:x2, :] = appear_map
 
         if self.save_display:
             img = img * 255.0

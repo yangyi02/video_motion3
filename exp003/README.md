@@ -9,7 +9,7 @@
 - Color image
 - Depth has 2 discrete level
 - Predict pixel value for the new appearing location
-- One more layer
+- Same as video_motion2/exp032
 
 ### Results
 

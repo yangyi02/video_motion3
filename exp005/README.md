@@ -1,15 +1,16 @@
-## Predict Depth, Predict Appear Pixel Value - 2 Frame 
+## Predict Depth, Predict Appear Pixel Value - 3 Frame 
 
 - Occlusion modeling, use neural net to predict discrete depth 
 - Predict depth using only current frame with another network
 - Predict motion for every pixel
 - Photometric loss for every pixel
 - Input 2 frames
-- Output is 2nd frame, the output is also an input of itself
+- Output is 3rd frame
 - Color image
 - Depth has 2 discrete level
 - Predict pixel value for the new appearing location
 - One more layer
+- Batch norm in reconstructing pixel network
 
 ### Results
 

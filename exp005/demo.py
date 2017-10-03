@@ -23,9 +23,9 @@ class Demo(BaseDemo):
         self.visualizer = Visualizer(args, self.data.reverse_m_dict)
 
     def init_model(self, m_kernel):
-        self.model = Net(self.im_size, self.im_size, self.im_channel, self.num_frame,
+        self.model = Net(self.im_size, self.im_size, self.im_channel, self.num_frame - 1,
                          m_kernel.shape[1], self.m_range, m_kernel)
-        self.model_gt = GtNet(self.im_size, self.im_size, self.im_channel, self.num_frame,
+        self.model_gt = GtNet(self.im_size, self.im_size, self.im_channel, self.num_frame - 1,
                               m_kernel.shape[1], self.m_range, m_kernel)
         if torch.cuda.is_available():
             # model = torch.nn.DataParallel(model).cuda()
@@ -55,7 +55,7 @@ class Demo(BaseDemo):
             im_output = Variable(torch.from_numpy(im_output).float())
             if torch.cuda.is_available():
                 im_input, im_output = im_input.cuda(), im_output.cuda()
-            im_pred, m_mask, d_mask = self.model(im_input, im_output)
+            im_pred, m_mask, d_mask, appear = self.model(im_input)
             im_diff = im_pred - im_output
             loss = torch.abs(im_diff).sum()
             loss.backward()
@@ -98,7 +98,7 @@ class Demo(BaseDemo):
             im_output = Variable(torch.from_numpy(im_output).float(), volatile=True)
             if torch.cuda.is_available():
                 im_input, im_output = im_input.cuda(), im_output.cuda()
-            im_pred, m_mask, d_mask = self.model(im_input, im_output)
+            im_pred, m_mask, d_mask, appear = self.model(im_input)
             im_diff = im_pred - im_output
             loss = torch.abs(im_diff).sum()
 
@@ -120,11 +120,11 @@ class Demo(BaseDemo):
                 test_epe.append(epe.cpu().data[0])
             if self.display:
                 self.visualizer.visualize_result(im_input, im_output, im_pred, flow, gt_motion,
-                                                 depth, 'test_%d.png' % epoch)
+                                                 depth, appear, 'test_%d.png' % epoch)
             if self.display_all:
                 for i in range(self.batch_size):
                     self.visualizer.visualize_result(im_input, im_output, im_pred, flow, gt_motion,
-                                                     depth, 'test_%d.png' % i, i)
+                                                     depth, appear, 'test_%d.png' % i, i)
         test_loss = numpy.mean(numpy.asarray(test_loss))
         base_loss = numpy.mean(numpy.asarray(base_loss))
         improve_loss = base_loss - test_loss
@@ -164,9 +164,9 @@ class Demo(BaseDemo):
                 gt_motion = gt_motion.cuda()
                 gt_depth = gt_depth.cuda()
             if self.data.name in ['box', 'mnist', 'box_complex']:
-                im_pred, m_mask, d_mask = self.model_gt(im_input, im_output, gt_motion_label, gt_depth, 'label')
+                im_pred, m_mask, d_mask, appear = self.model_gt(im_input, gt_motion_label, gt_depth, 'label')
             elif self.data.name in['box2', 'mnist2']:
-                im_pred, m_mask, d_mask = self.model_gt(im_input, im_output, gt_motion, gt_depth)
+                im_pred, m_mask, d_mask, appear = self.model_gt(im_input, gt_motion, gt_depth)
             im_diff = im_pred - im_output
             loss = torch.abs(im_diff).sum()
 
@@ -180,11 +180,11 @@ class Demo(BaseDemo):
             test_epe.append(epe.cpu().data[0])
             if self.display:
                 self.visualizer.visualize_result(im_input, im_output, im_pred, flow, gt_motion,
-                                                 depth, 'test_gt.png')
+                                                 depth, appear, 'test_gt.png')
             if self.display_all:
                 for i in range(self.batch_size):
                     self.visualizer.visualize_result(im_input, im_output, im_pred, flow, gt_motion,
-                                                     depth, 'test_gt_%d.png' % i, i)
+                                                     depth, appear, 'test_gt_%d.png' % i, i)
         test_loss = numpy.mean(numpy.asarray(test_loss))
         base_loss = numpy.mean(numpy.asarray(base_loss))
         improve_loss = base_loss - test_loss
