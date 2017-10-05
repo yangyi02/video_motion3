@@ -42,7 +42,7 @@ class Demo(BaseBiDemo):
             optimizer.zero_grad()
             if self.data.name in ['box', 'mnist', 'box_complex']:
                 im, _, _, _, _, _ = self.data.get_next_batch(self.data.train_images)
-            elif self.data.name in ['robot64', 'mpii64', 'nyuv2']:
+            elif self.data.name in ['robot64', 'mpii64', 'mpi128', 'nyuv2', 'robot128', 'viper64', 'viper128']:
                 im = self.data.get_next_batch(self.data.train_images)
             else:
                 logging.error('%s data not supported' % self.data.name)
@@ -92,7 +92,7 @@ class Demo(BaseBiDemo):
         for epoch in range(self.test_epoch):
             if self.data.name in ['box', 'mnist', 'box_complex']:
                 im, motion, motion_r, _, _, _ = self.data.get_next_batch(self.data.test_images)
-            elif self.data.name in ['robot64', 'mpii64', 'nyuv2', 'mpii64_sample']:
+            elif self.data.name in ['robot64', 'mpii64', 'mpi128', 'nyuv2', 'robot128', 'viper64', 'viper128']:
                 im, motion, motion_r = self.data.get_next_batch(self.data.test_images), None, None
             elif self.data.name in ['mpii64_sample']:
                 im, motion, motion_r = self.data.get_next_batch(self.data.test_images), None, None

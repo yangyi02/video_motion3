@@ -24,6 +24,8 @@
 | 05   |  |  |  | mpii64, m_range=2, image_size=64, num_frame=3 |
 | 06   |  |  |  | nyuv2, m_range=2, image_size=64, num_frame=3 |
 | 07   |  |  |  | robot128, m_range=2, image_size=128, num_frame=3 |
+| 08   |  |  |  | viper64, m_range=2, image_size=64, num_frame=3 |
+| 09   |  |  |  | viper128, m_range=2, image_size=128, num_frame=3 |
 
 ### Take Home Message
 
