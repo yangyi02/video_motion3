@@ -5,6 +5,7 @@ from PIL import Image
 import cv2
 
 import flowlib
+import pyflowlib
 
 
 class BaseVisualizer(object):
@@ -87,16 +88,25 @@ class BaseVisualizer(object):
                 next_frame = cv2.cvtColor(im.astype(numpy.uint8), cv2.COLOR_RGB2GRAY)
             flow = cv2.calcOpticalFlowFarneback(prvs_frame, next_frame, None, 0.5, 5, 5, 3, 5, 1.1, 0)
             optical_flow = flowlib.visualize_flow(flow)
+            x1, y1, x2, y2 = self.get_img_coordinate(3, 2)
+            img[y1:y2, x1:x2, :] = optical_flow / 255.0
+
+            prvs_frame = numpy.asarray(prev_im * 255.0, order='C')
+            next_frame = numpy.asarray(im_output * 255.0, order='C')
+            flow = pyflowlib.calculate_flow(prvs_frame, next_frame)
+            optical_flow = flowlib.visualize_flow(flow)
+            x1, y1, x2, y2 = self.get_img_coordinate(3, 3)
+            img[y1:y2, x1:x2, :] = optical_flow / 255.0
         else:
             gt_motion = gt_motion_f[idx].cpu().data.numpy().transpose(1, 2, 0)
             optical_flow = flowlib.visualize_flow(gt_motion)
-        x1, y1, x2, y2 = self.get_img_coordinate(3, 2)
-        img[y1:y2, x1:x2, :] = optical_flow / 255.0
+            x1, y1, x2, y2 = self.get_img_coordinate(3, 2)
+            img[y1:y2, x1:x2, :] = optical_flow / 255.0
 
         attn = attn_f[idx].cpu().data.numpy().squeeze()
         cmap = plt.get_cmap('jet')
         attn_map = cmap(attn)[:, :, 0:3]
-        x1, y1, x2, y2 = self.get_img_coordinate(3, 3)
+        x1, y1, x2, y2 = self.get_img_coordinate(3, 4)
         img[y1:y2, x1:x2, :] = attn_map
 
         pred_motion = pred_motion_b[idx].cpu().data.numpy().transpose(1, 2, 0)
@@ -118,21 +128,25 @@ class BaseVisualizer(object):
                 next_frame = cv2.cvtColor(im.astype(numpy.uint8), cv2.COLOR_RGB2GRAY)
             flow = cv2.calcOpticalFlowFarneback(prvs_frame, next_frame, None, 0.5, 5, 5, 3, 5, 1.1, 0)
             optical_flow = flowlib.visualize_flow(flow)
+            x1, y1, x2, y2 = self.get_img_coordinate(4, 2)
+            img[y1:y2, x1:x2, :] = optical_flow / 255.0
+
+            prvs_frame = numpy.asarray(prev_im * 255.0, order='C')
+            next_frame = numpy.asarray(im_output * 255.0, order='C')
+            flow = pyflowlib.calculate_flow(prvs_frame, next_frame)
+            optical_flow = flowlib.visualize_flow(flow)
+            x1, y1, x2, y2 = self.get_img_coordinate(4, 3)
+            img[y1:y2, x1:x2, :] = optical_flow / 255.0
         else:
             gt_motion = gt_motion_b[idx].cpu().data.numpy().transpose(1, 2, 0)
             optical_flow = flowlib.visualize_flow(gt_motion)
-        x1, y1, x2, y2 = self.get_img_coordinate(4, 2)
-        img[y1:y2, x1:x2, :] = optical_flow / 255.0
-
-        gt_motion = gt_motion_b[idx].cpu().data.numpy().transpose(1, 2, 0)
-        optical_flow = flowlib.visualize_flow(gt_motion)
-        x1, y1, x2, y2 = self.get_img_coordinate(4, 2)
-        img[y1:y2, x1:x2, :] = optical_flow / 255.0
+            x1, y1, x2, y2 = self.get_img_coordinate(4, 2)
+            img[y1:y2, x1:x2, :] = optical_flow / 255.0
 
         attn = attn_b[0].cpu().data.numpy().squeeze()
         cmap = plt.get_cmap('jet')
         attn_map = cmap(attn)[:, :, 0:3]
-        x1, y1, x2, y2 = self.get_img_coordinate(4, 3)
+        x1, y1, x2, y2 = self.get_img_coordinate(4, 4)
         img[y1:y2, x1:x2, :] = attn_map
 
         if self.save_display:
