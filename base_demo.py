@@ -241,7 +241,7 @@ class BaseDemo(object):
             epe = epe.sum() / epe.numel()
             test_epe.append(epe.cpu().data[0])
             if self.display:
-                self.visualizer.visualize_result(im_input, im_output, im_pred, flow, gt_motion,
+                self.visualizer.visualize_result(im_input, im_output, im_pred, flow, None,
                                                  disappear, appear, 'test_gt.png')
             if self.display_all:
                 for i in range(self.batch_size):

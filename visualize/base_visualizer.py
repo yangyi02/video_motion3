@@ -6,6 +6,7 @@ import cv2
 
 import flowlib
 import pyflowlib
+import flownetlib
 
 
 class BaseVisualizer(object):
@@ -19,7 +20,7 @@ class BaseVisualizer(object):
         self.save_display_dir = args.save_display_dir
 
     def visualize_result(self, im_input, im_output, im_pred, pred_motion, gt_motion, disappear, appear, file_name='tmp.png', idx=0):
-        width, height = self.get_img_size(3, max(self.num_frame + 1, 5))
+        width, height = self.get_img_size(3, max(self.num_frame + 1, 6))
         im_channel = self.im_channel
         img = numpy.ones((height, width, 3))
         prev_im = None
@@ -73,6 +74,13 @@ class BaseVisualizer(object):
             optical_flow = flowlib.visualize_flow(flow)
             x1, y1, x2, y2 = self.get_img_coordinate(3, 3)
             img[y1:y2, x1:x2, :] = optical_flow / 255.0
+
+            prvs_frame = numpy.asarray(prev_im * 255.0, order='C', dtype=numpy.uint8)
+            next_frame = numpy.asarray(im_output * 255.0, order='C', dtype=numpy.uint8)
+            flow = flownetlib.calculate_flow(prvs_frame, next_frame)
+            optical_flow = flowlib.visualize_flow(flow)
+            x1, y1, x2, y2 = self.get_img_coordinate(3, 4)
+            img[y1:y2, x1:x2, :] = optical_flow / 255.0
         else:
             gt_motion = gt_motion[idx].cpu().data.numpy().transpose(1, 2, 0)
             optical_flow = flowlib.visualize_flow(gt_motion)
@@ -82,13 +90,13 @@ class BaseVisualizer(object):
         disappear = disappear[idx].cpu().data.numpy().squeeze()
         cmap = plt.get_cmap('jet')
         disappear = cmap(disappear)[:, :, 0:3]
-        x1, y1, x2, y2 = self.get_img_coordinate(3, 4)
+        x1, y1, x2, y2 = self.get_img_coordinate(3, 5)
         img[y1:y2, x1:x2, :] = disappear
 
         appear = appear[idx].cpu().data.numpy().squeeze()
         cmap = plt.get_cmap('jet')
         appear = cmap(appear)[:, :, 0:3]
-        x1, y1, x2, y2 = self.get_img_coordinate(3, 5)
+        x1, y1, x2, y2 = self.get_img_coordinate(3, 6)
         img[y1:y2, x1:x2, :] = appear
 
         if self.save_display:

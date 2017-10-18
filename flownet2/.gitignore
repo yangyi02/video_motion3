@@ -4,3 +4,4 @@ models/
 build
 python/caffe/_caffe.so
 python/caffe/proto/
+*.flo
