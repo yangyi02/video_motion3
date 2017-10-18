@@ -6,6 +6,7 @@ import cv2
 
 from visualize.base_visualizer import BaseVisualizer
 from visualize import flowlib
+from visualize import pyflowlib
 
 
 class Visualizer(BaseVisualizer):
@@ -13,7 +14,7 @@ class Visualizer(BaseVisualizer):
         super(Visualizer, self).__init__(args, reverse_m_dict)
 
     def visualize_result(self, im_input, im_output, im_pred, pred_motion, gt_motion, depth, appear, file_name='tmp.png', idx=0):
-        width, height = self.get_img_size(3, max(self.num_frame + 1, 4))
+        width, height = self.get_img_size(3, max(self.num_frame + 1, 5))
         im_channel = self.im_channel
         img = numpy.ones((height, width, 3))
         prev_im = None
@@ -63,23 +64,32 @@ class Visualizer(BaseVisualizer):
                 next_frame = cv2.cvtColor(im.astype(numpy.uint8), cv2.COLOR_RGB2GRAY)
             flow = cv2.calcOpticalFlowFarneback(prvs_frame, next_frame, None, 0.5, 5, 5, 3, 5, 1.1, 0)
             optical_flow = flowlib.visualize_flow(flow)
+            x1, y1, x2, y2 = self.get_img_coordinate(3, 2)
+            img[y1:y2, x1:x2, :] = optical_flow / 255.0
+
+            prvs_frame = numpy.asarray(prev_im * 255.0, order='C')
+            next_frame = numpy.asarray(im_output * 255.0, order='C')
+            flow = pyflowlib.calculate_flow(prvs_frame, next_frame)
+            optical_flow = flowlib.visualize_flow(flow)
+            x1, y1, x2, y2 = self.get_img_coordinate(3, 3)
+            img[y1:y2, x1:x2, :] = optical_flow / 255.0
         else:
             gt_motion = gt_motion[idx].cpu().data.numpy().transpose(1, 2, 0)
             optical_flow = flowlib.visualize_flow(gt_motion)
-        x1, y1, x2, y2 = self.get_img_coordinate(3, 2)
-        img[y1:y2, x1:x2, :] = optical_flow / 255.0
+            x1, y1, x2, y2 = self.get_img_coordinate(3, 2)
+            img[y1:y2, x1:x2, :] = optical_flow / 255.0
 
         depth = depth[idx].cpu().data.numpy().squeeze()
         depth = depth * 1.0 / depth.max()
         cmap = plt.get_cmap('jet')
         depth_map = cmap(depth)[:, :, 0:3]
-        x1, y1, x2, y2 = self.get_img_coordinate(3, 3)
+        x1, y1, x2, y2 = self.get_img_coordinate(3, 4)
         img[y1:y2, x1:x2, :] = depth_map
 
         appear = appear[idx].cpu().data.numpy().squeeze()
         cmap = plt.get_cmap('jet')
         appear_map = cmap(appear)[:, :, 0:3]
-        x1, y1, x2, y2 = self.get_img_coordinate(3, 4)
+        x1, y1, x2, y2 = self.get_img_coordinate(3, 5)
         img[y1:y2, x1:x2, :] = appear_map
 
         if self.save_display:
