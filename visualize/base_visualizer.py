@@ -31,7 +31,7 @@ class BaseVisualizer(object):
 
             if i > 0:
                 im_diff = abs(curr_im - prev_im)
-                x1, y1, x2, y2 = self.get_img_coordinate(2, i + 1)
+                x1, y1, x2, y2 = self.get_img_coordinate(2, i)
                 img[y1:y2, x1:x2, :] = im_diff
             prev_im = curr_im
 
@@ -40,7 +40,7 @@ class BaseVisualizer(object):
         img[y1:y2, x1:x2, :] = im_output
 
         im_diff = numpy.abs(im_output - prev_im)
-        x1, y1, x2, y2 = self.get_img_coordinate(2, self.num_frame)
+        x1, y1, x2, y2 = self.get_img_coordinate(2, self.num_frame - 1)
         img[y1:y2, x1:x2, :] = im_diff
 
         im_pred = im_pred[idx].cpu().data.numpy().transpose(1, 2, 0)
@@ -48,7 +48,7 @@ class BaseVisualizer(object):
         img[y1:y2, x1:x2, :] = im_pred
 
         im_diff = numpy.abs(im_pred - im_output)
-        x1, y1, x2, y2 = self.get_img_coordinate(2, self.num_frame + 1)
+        x1, y1, x2, y2 = self.get_img_coordinate(2, self.num_frame)
         img[y1:y2, x1:x2, :] = im_diff
 
         pred_motion = pred_motion[idx].cpu().data.numpy().transpose(1, 2, 0)
@@ -58,10 +58,14 @@ class BaseVisualizer(object):
 
         if gt_motion is None:
             im = prev_im * 255.0
-            if im_channel == 3:
+            if im_channel == 1:
+                prvs_frame = im.astype(numpy.uint8)
+            elif im_channel == 3:
                 prvs_frame = cv2.cvtColor(im.astype(numpy.uint8), cv2.COLOR_RGB2GRAY)
             im = im_output * 255.0
-            if im_channel == 3:
+            if im_channel == 1:
+                next_frame = im.astype(numpy.uint8)
+            elif im_channel == 3:
                 next_frame = cv2.cvtColor(im.astype(numpy.uint8), cv2.COLOR_RGB2GRAY)
             flow = cv2.calcOpticalFlowFarneback(prvs_frame, next_frame, None, 0.5, 5, 5, 3, 5, 1.1, 0)
             optical_flow = flowlib.visualize_flow(flow)
@@ -89,15 +93,15 @@ class BaseVisualizer(object):
 
         disappear = disappear[idx].cpu().data.numpy().squeeze()
         cmap = plt.get_cmap('jet')
-        disappear = cmap(disappear)[:, :, 0:3]
+        disappear_map = cmap(disappear)[:, :, 0:3]
         x1, y1, x2, y2 = self.get_img_coordinate(3, 5)
-        img[y1:y2, x1:x2, :] = disappear
+        img[y1:y2, x1:x2, :] = disappear_map
 
         appear = appear[idx].cpu().data.numpy().squeeze()
         cmap = plt.get_cmap('jet')
-        appear = cmap(appear)[:, :, 0:3]
+        appear_map = cmap(appear)[:, :, 0:3]
         x1, y1, x2, y2 = self.get_img_coordinate(3, 6)
-        img[y1:y2, x1:x2, :] = appear
+        img[y1:y2, x1:x2, :] = appear_map
 
         if self.save_display:
             img = img * 255.0

@@ -57,7 +57,7 @@ class Demo(BaseDemo):
                 im_input, im_output = im_input.cuda(), im_output.cuda()
             im_pred, m_mask, d_mask, appear = self.model(im_input)
             im_diff = im_pred - im_output
-            im_diff_adj = F.relu(torch.abs(im_diff) - 0.05)
+            im_diff_adj = F.relu(torch.abs(im_diff) - 0.02)
             loss = im_diff_adj.sum()
             loss.backward()
             optimizer.step()
@@ -67,7 +67,7 @@ class Demo(BaseDemo):
                 train_loss.pop(0)
             ave_train_loss = sum(train_loss) / float(len(train_loss))
             base_diff = im_input[:, -self.im_channel:, :, :] - im_output
-            base_diff_adj = F.relu(torch.abs(base_diff) - 0.05)
+            base_diff_adj = F.relu(torch.abs(base_diff) - 0.02)
             base_loss.append(base_diff_adj.sum().data[0])
             if len(base_loss) > 100:
                 base_loss.pop(0)
@@ -103,12 +103,12 @@ class Demo(BaseDemo):
                 im_input, im_output = im_input.cuda(), im_output.cuda()
             im_pred, m_mask, d_mask, appear = self.model(im_input)
             im_diff = im_pred - im_output
-            im_diff_adj = F.relu(torch.abs(im_diff) - 0.05)
+            im_diff_adj = F.relu(torch.abs(im_diff) - 0.02)
             loss = im_diff_adj.sum()
 
             test_loss.append(loss.data[0])
             base_diff = im_input[:, -self.im_channel:, :, :] - im_output
-            base_diff_adj = F.relu(torch.abs(base_diff) - 0.05)
+            base_diff_adj = F.relu(torch.abs(base_diff) - 0.02)
             base_loss.append(base_diff_adj.sum().data[0])
             flow = self.motion2flow(m_mask)
             depth = self.mask2depth(d_mask)
@@ -174,12 +174,12 @@ class Demo(BaseDemo):
             elif self.data.name in['box2', 'mnist2']:
                 im_pred, m_mask, d_mask, appear = self.model_gt(im_input, gt_motion, gt_depth)
             im_diff = im_pred - im_output
-            im_diff_adj = F.relu(torch.abs(im_diff) - 0.05)
+            im_diff_adj = F.relu(torch.abs(im_diff) - 0.02)
             loss = im_diff_adj.sum()
 
             test_loss.append(loss.data[0])
             base_diff = im_input[:, -self.im_channel:, :, :] - im_output
-            base_diff_adj = F.relu(torch.abs(base_diff) - 0.05)
+            base_diff_adj = F.relu(torch.abs(base_diff) - 0.02)
             base_loss.append(base_diff_adj.sum().data[0])
             flow = self.motion2flow(m_mask)
             depth = self.mask2depth(d_mask)

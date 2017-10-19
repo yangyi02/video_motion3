@@ -1,103 +1,143 @@
-[INFO 2017-10-04 21:02:18,131 demo.py:215] Namespace(batch_size=64, bg_move=False, bg_noise=0.5, data='viper64', diff_div_thresh=1.25, display=True, display_all=False, fg_noise=0.1, fixed_data=False, image_channel=3, image_size=64, init_model_path='./model.pth', learning_rate=0.001, max_diff_thresh=0.1, min_diff_thresh=0.01, motion_range=2, motion_type='affine', num_frame=4, num_objects=1, save_dir='./', save_display=True, save_display_dir='./', save_interval=100, seed=111, test=True, test_all=False, test_epoch=20, test_gt=False, test_interval=100, train=False, train_epoch=1000)
+[INFO 2017-10-18 17:41:40,658 demo.py:215] Namespace(batch_size=64, bg_move=False, bg_noise=0.5, data='viper64', diff_div_thresh=1.25, display=True, display_all=False, fg_noise=0.1, fixed_data=False, image_channel=3, image_size=64, init_model_path='./model.pth', learning_rate=0.001, max_diff_thresh=0.1, min_diff_thresh=0.01, motion_range=2, motion_type='affine', num_frame=4, num_objects=1, save_dir='./', save_display=True, save_display_dir='./', save_interval=100, seed=111, test=True, test_all=False, test_epoch=20, test_gt=False, test_interval=100, train=False, train_epoch=1000)
 Constructing pyramid...done!
 Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
-[INFO 2017-10-04 21:02:35,154 demo.py:132] average test loss: 15640.29, base loss: 23930.03
-[INFO 2017-10-04 21:02:35,154 demo.py:133] improve_loss: 8289.74, improve_percent: 0.35
+[INFO 2017-10-18 17:42:38,443 demo.py:132] average test loss: 16527.50, base loss: 25253.11
+[INFO 2017-10-18 17:42:38,443 demo.py:133] improve_loss: 8725.61, improve_percent: 0.35
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.

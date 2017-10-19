@@ -7,8 +7,8 @@ from math import ceil
 from scipy import misc
 
 
-def calculate_flow(im1=None, im2=None, caffemodel='flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5',
-                   deployproto='flownet2/models/FlowNet2/FlowNet2_deploy.prototxt.template'):
+def calculate_flow(im1=None, im2=None, caffemodel='/home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5',
+                   deployproto='/home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_deploy.prototxt.template'):
 
     if not os.path.exists(caffemodel):
         raise BaseException('caffemodel does not exist: ' + caffemodel)

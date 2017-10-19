@@ -1,4 +1,4 @@
-[INFO 2017-10-05 12:20:33,153 demo.py:224] Namespace(batch_size=32, bg_move=False, bg_noise=0.5, data='robot128', diff_div_thresh=1.25, display=True, display_all=False, fg_noise=0.1, fixed_data=False, image_channel=3, image_size=128, init_model_path='./model.pth', learning_rate=0.001, max_diff_thresh=0.1, min_diff_thresh=0.01, motion_range=2, motion_type='affine', num_frame=4, num_objects=1, save_dir='./', save_display=True, save_display_dir='./', save_interval=100, seed=111, test=True, test_all=False, test_epoch=20, test_gt=False, test_interval=100, train=False, train_epoch=1000)
+[INFO 2017-10-18 21:52:26,165 demo.py:224] Namespace(batch_size=32, bg_move=False, bg_noise=0.5, data='robot128', diff_div_thresh=1.25, display=True, display_all=False, fg_noise=0.1, fixed_data=False, image_channel=3, image_size=128, init_model_path='./model.pth', learning_rate=0.001, max_diff_thresh=0.1, min_diff_thresh=0.01, motion_range=2, motion_type='affine', num_frame=4, num_objects=1, save_dir='./', save_display=True, save_display_dir='./', save_interval=100, seed=111, test=True, test_all=False, test_epoch=20, test_gt=False, test_interval=100, train=False, train_epoch=1000)
 Constructing pyramid...done!
 Pyramid level 5
 Pyramid level 4
@@ -6,6 +6,8 @@ Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 5
 Pyramid level 4
@@ -13,6 +15,8 @@ Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 5
 Pyramid level 4
@@ -20,6 +24,8 @@ Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 5
 Pyramid level 4
@@ -27,6 +33,8 @@ Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 5
 Pyramid level 4
@@ -34,6 +42,8 @@ Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 5
 Pyramid level 4
@@ -41,6 +51,8 @@ Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 5
 Pyramid level 4
@@ -48,6 +60,8 @@ Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 5
 Pyramid level 4
@@ -55,6 +69,8 @@ Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 5
 Pyramid level 4
@@ -62,6 +78,8 @@ Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 5
 Pyramid level 4
@@ -69,6 +87,8 @@ Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 5
 Pyramid level 4
@@ -76,6 +96,8 @@ Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 5
 Pyramid level 4
@@ -83,6 +105,139 @@ Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+blob blob42 contains nan
+blob blob42_Accum1_0_split_0 contains nan
+blob blob42_Accum1_0_split_1 contains nan
+blob blob46 contains nan
+blob blob47 contains nan
+blob blob48 contains nan
+blob blob49 contains nan
+blob blob49_ReLU21_0_split_0 contains nan
+blob blob49_ReLU21_0_split_1 contains nan
+blob blob50 contains nan
+blob blob51 contains nan
+blob blob51_ReLU23_0_split_0 contains nan
+blob blob51_ReLU23_0_split_1 contains nan
+blob blob52 contains nan
+blob blob53 contains nan
+blob blob53_ReLU25_0_split_0 contains nan
+blob blob53_ReLU25_0_split_1 contains nan
+blob blob54 contains nan
+blob blob55 contains nan
+blob blob55_ReLU27_0_split_0 contains nan
+blob blob55_ReLU27_0_split_1 contains nan
+blob blob56 contains nan
+blob blob57 contains nan
+blob blob57_ReLU29_0_split_0 contains nan
+blob blob57_ReLU29_0_split_1 contains nan
+blob blob58 contains nan
+blob blob59 contains nan
+blob blob60 contains nan
+blob blob61 contains nan
+blob blob61_Concat7_0_split_0 contains nan
+blob blob61_Concat7_0_split_1 contains nan
+blob blob62 contains nan
+blob blob63 contains nan
+blob blob64 contains nan
+blob blob65 contains nan
+blob blob65_Concat8_0_split_0 contains nan
+blob blob65_Concat8_0_split_1 contains nan
+blob blob66 contains nan
+blob blob67 contains nan
+blob blob68 contains nan
+blob blob69 contains nan
+blob blob69_Concat9_0_split_0 contains nan
+blob blob69_Concat9_0_split_1 contains nan
+blob blob70 contains nan
+blob blob71 contains nan
+blob blob72 contains nan
+blob blob73 contains nan
+blob blob74 contains nan
+blob blob75 contains nan
+blob blob76 contains nan
+blob blob76_Accum2_0_split_0 contains nan
+blob blob76_Accum2_0_split_1 contains nan
+blob blob80 contains nan
+blob blob81 contains nan
+blob blob82 contains nan
+blob blob83 contains nan
+blob blob83_ReLU35_0_split_0 contains nan
+blob blob83_ReLU35_0_split_1 contains nan
+blob blob84 contains nan
+blob blob85 contains nan
+blob blob85_ReLU37_0_split_0 contains nan
+blob blob85_ReLU37_0_split_1 contains nan
+blob blob86 contains nan
+blob blob87 contains nan
+blob blob87_ReLU39_0_split_0 contains nan
+blob blob87_ReLU39_0_split_1 contains nan
+blob blob88 contains nan
+blob blob89 contains nan
+blob blob89_ReLU41_0_split_0 contains nan
+blob blob89_ReLU41_0_split_1 contains nan
+blob blob90 contains nan
+blob blob91 contains nan
+blob blob91_ReLU43_0_split_0 contains nan
+blob blob91_ReLU43_0_split_1 contains nan
+blob blob92 contains nan
+blob blob93 contains nan
+blob blob94 contains nan
+blob blob95 contains nan
+blob blob95_Concat12_0_split_0 contains nan
+blob blob95_Concat12_0_split_1 contains nan
+blob blob96 contains nan
+blob blob97 contains nan
+blob blob98 contains nan
+blob blob99 contains nan
+blob blob99_Concat13_0_split_0 contains nan
+blob blob99_Concat13_0_split_1 contains nan
+blob blob100 contains nan
+blob blob101 contains nan
+blob blob102 contains nan
+blob blob103 contains nan
+blob blob103_Concat14_0_split_0 contains nan
+blob blob103_Concat14_0_split_1 contains nan
+blob blob104 contains nan
+blob blob105 contains nan
+blob blob106 contains nan
+blob blob107 contains nan
+blob blob108 contains nan
+blob blob109 contains nan
+blob blob147 contains nan
+blob blob147_Resample4_0_split_0 contains nan
+blob blob147_Resample4_0_split_1 contains nan
+blob blob147_Resample4_0_split_2 contains nan
+blob blob149 contains nan
+blob blob156 contains nan
+blob blob157 contains nan
+blob blob157_ReLU65_0_split_0 contains nan
+blob blob157_ReLU65_0_split_1 contains nan
+blob blob158 contains nan
+blob blob159 contains nan
+blob blob159_ReLU67_0_split_0 contains nan
+blob blob159_ReLU67_0_split_1 contains nan
+blob blob160 contains nan
+blob blob161 contains nan
+blob blob161_ReLU69_0_split_0 contains nan
+blob blob161_ReLU69_0_split_1 contains nan
+blob blob162 contains nan
+blob blob163 contains nan
+blob blob164 contains nan
+blob blob165 contains nan
+blob blob165_Concat22_0_split_0 contains nan
+blob blob165_Concat22_0_split_1 contains nan
+blob blob166 contains nan
+blob blob167 contains nan
+blob blob168 contains nan
+blob blob169 contains nan
+blob blob170 contains nan
+blob blob171 contains nan
+blob blob172 contains nan
+blob predict_flow_resize contains nan
+blob predict_flow_final contains nan
+**************** FOUND NANs, RETRYING ****************
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 5
 Pyramid level 4
@@ -90,6 +245,8 @@ Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 5
 Pyramid level 4
@@ -97,6 +254,8 @@ Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 5
 Pyramid level 4
@@ -104,6 +263,8 @@ Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 5
 Pyramid level 4
@@ -111,6 +272,8 @@ Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 5
 Pyramid level 4
@@ -118,6 +281,8 @@ Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 5
 Pyramid level 4
@@ -125,6 +290,8 @@ Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 5
 Pyramid level 4
@@ -132,6 +299,8 @@ Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
 Constructing pyramid...done!
 Pyramid level 5
 Pyramid level 4
@@ -139,5 +308,7 @@ Pyramid level 3
 Pyramid level 2
 Pyramid level 1
 Pyramid level 0
-[INFO 2017-10-05 12:21:16,923 demo.py:138] average test loss: 3031.73, base loss: 7932.24
-[INFO 2017-10-05 12:21:16,923 demo.py:139] improve_loss: 4900.51, improve_percent: 0.62
+[INFO 2017-10-18 21:53:48,579 demo.py:138] average test loss: 5865.08, base loss: 12013.68
+[INFO 2017-10-18 21:53:48,580 demo.py:139] improve_loss: 6148.59, improve_percent: 0.51
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
