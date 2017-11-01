@@ -9,7 +9,9 @@
 - Color image
 - Depth has 2 discrete level
 - Predict pixel value for the new appearing location
-- Same as video_motion2/exp032
+- One more layer
+- Add gradient loss
+- Generate bidirectional data
 
 ### Results
 
@@ -26,8 +28,6 @@
 | 07   |  |  |  | robot128, m_range=2, image_size=128, num_frame=3 |
 | 08   |  |  |  | viper64, m_range=2, image_size=64, num_frame=3 |
 | 09   |  |  |  | viper128, m_range=2, image_size=128, num_frame=3 |
-| 10   |  |  |  | box, m_range=2, image_size=32, num_frame=3, rand_noise=0.4 |
-| 11   |  |  |  | robot128, m_range=2, image_size=128, num_frame=3, rand_noise=0.4 |
 
 ### Take Home Message
 

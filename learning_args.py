@@ -37,7 +37,9 @@ def parse_args():
     arg_parser.add_argument('--motion_type', default='affine')
     arg_parser.add_argument('--bg_noise', type=float, default=0.5)
     arg_parser.add_argument('--fg_noise', type=float, default=0.1)
+    arg_parser.add_argument('--rand_noise', type=float, default=0)
     arg_parser.add_argument('--bg_move', action='store_true')
+    arg_parser.add_argument('--augment_reverse', action='store_true')
 
     arg_parser.add_argument('--min_diff_thresh', type=float, default=0.01)
     arg_parser.add_argument('--max_diff_thresh', type=float, default=0.1)

@@ -20,6 +20,7 @@ class SyntheticData(object):
         self.num_frame = args.num_frame
         self.bg_move = args.bg_move
         self.bg_noise = args.bg_noise
+        self.rand_noise = args.rand_noise
         self.m_dict, self.reverse_m_dict, self.m_kernel = self.motion_dict()
         self.visualizer = BaseVisualizer(args, self.reverse_m_dict)
         self.save_display = args.save_display
@@ -152,6 +153,9 @@ class SyntheticData(object):
                 x = m_range + m_x[i, j]
                 y = m_range + m_y[i, j]
                 im_new[i, j, :, :, :] = im_big[i, j, :, y:y + im_size, x:x + im_size]
+        im_new = im_new + (numpy.random.rand(batch_size, im_channel, im_size, im_size) - 0.5) * self.rand_noise
+        im_new[im_new > 1] = 1
+        im_new[im_new < 0] = 0
         return im_new
 
     def move_motion(self, motion, m_x, m_y):
@@ -230,6 +234,9 @@ class SyntheticData(object):
             x = m_range + m_x[0, i]
             y = m_range + m_y[0, i]
             im_new[i, :, :, :] = im_big[i, :, y:y + im_size, x:x + im_size]
+        im_new = im_new + (numpy.random.rand(batch_size, im_channel, im_size, im_size) - 0.5) * self.rand_noise
+        im_new[im_new > 1] = 1
+        im_new[im_new < 0] = 0
         return im_new
 
     def display(self, im, motion, seg_layer):

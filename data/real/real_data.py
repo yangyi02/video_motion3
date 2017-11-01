@@ -30,6 +30,8 @@ class RealData(object):
         self.fixed_data = args.fixed_data
         if args.fixed_data:
             numpy.random.seed(args.seed)
+        self.rand_noise = args.rand_noise
+        self.augment_reverse = args.augment_reverse
 
     def motion_dict(self):
         m_range = self.m_range
@@ -93,7 +95,13 @@ class RealData(object):
                 im_diff_div = im_diff / (numpy.median(im_diff) + 1e-5)
                 if any(im_diff_div > diff_div_thresh) or any(im_diff_div < 1/diff_div_thresh):
                     continue
+            if self.augment_reverse:
+                if numpy.random.rand() < 0.5:
+                    im[i, :, :, :, :] = im[i, ::-1, :, :, :]
             i = i + 1
+        im = im + (numpy.random.rand(batch_size, num_frame, im_channel, im_size, im_size) - 0.5) * self.rand_noise
+        im[im > 1] = 1
+        im[im < 0] = 0
         return im
 
     def display(self, im):
