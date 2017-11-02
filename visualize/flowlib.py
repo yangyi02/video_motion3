@@ -206,6 +206,43 @@ def read_flow(filename):
     return data2d
 
 
+def read_flow_png(flow_file):
+    """
+    Read optical flow from KITTI .png file
+    :param flow_file: name of the flow file
+    :return: optical flow data in matrix
+    """
+    flow_object = png.Reader(filename=flow_file)
+    flow_direct = flow_object.asDirect()
+    flow_data = list(flow_direct[2])
+    (w, h) = flow_direct[3]['size']
+    flow = np.zeros((h, w, 3), dtype=np.float64)
+    for i in range(len(flow_data)):
+        flow[i, :, 0] = flow_data[i][0::3]
+        flow[i, :, 1] = flow_data[i][1::3]
+        flow[i, :, 2] = flow_data[i][2::3]
+
+    invalid_idx = (flow[:, :, 2] == 0)
+    flow[:, :, 0:2] = (flow[:, :, 0:2] - 2 ** 15) / 64.0
+    flow[invalid_idx, 0] = 0
+    flow[invalid_idx, 1] = 0
+    return flow
+
+def write_flow_png(flo, flow_file):
+    h, w, _ = flo.shape
+    out_flo = np.ones((h, w, 3), dtype=np.float32)
+    out_flo[:,:,0] = np.maximum(np.minimum(flo[:,:,0]*64.0 + 2**15, 2**16-1), 0)
+    out_flo[:,:,1] = np.maximum(np.minimum(flo[:,:,1]*64.0 + 2**15, 2**16-1), 0)
+    out_flo = out_flo.astype(np.uint16)
+
+    with open(flow_file, 'wb') as f:
+        writer = png.Writer(width=w, height=h, bitdepth=16)
+# Convert z to the Python list of lists expected by
+# the png writer.
+        z2list = out_flo.reshape(-1, w*3).tolist()
+        writer.write(f, z2list)
+
+
 def write_flow(flow, filename):
     """
     write optical flow in Middlebury .flo format

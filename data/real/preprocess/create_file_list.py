@@ -18,7 +18,7 @@ if __name__ == '__main__':
         for sub_dir in sub_dirs:
             files = os.listdir(os.path.join(input_dir, each_dir, sub_dir))
             for file_name in files:
-                if file_name.endswith('.jpg'):
+                if file_name.endswith('.jpg') or file_name.endswith('.png'):
                     file_list.append(os.path.join(each_dir, sub_dir, file_name))
 
     save_file = open(output_file, 'w')
