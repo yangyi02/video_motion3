@@ -21,6 +21,8 @@ from data.real.mpii64_sample import Mpii64Sample
 from data.real.nyuv2_data import Nyuv2Data
 from data.real.viper64_data import Viper64Data
 from data.real.viper128_data import Viper128Data
+from data.real.kitti128_data import Kitti128Data
+from data.real.kitti128_sample import Kitti128Sample
 from base_model import BaseNet, BaseGtNet
 from visualize.base_visualizer import BaseVisualizer
 import logging
@@ -70,6 +72,10 @@ class BaseDemo(object):
             self.data = Viper64Data(args)
         elif args.data == 'viper128':
             self.data = Viper128Data(args)
+        elif args.data == 'kitti128':
+            self.data = Kitti128Data(args)
+        elif args.data == 'kitti128_sample':
+            self.data = Kitti128Sample(args)
         else:
             logging.error('%s data not supported' % args.data)
         self.init_model_path = args.init_model_path
@@ -98,7 +104,7 @@ class BaseDemo(object):
                 im, _, _, _ = self.data.get_next_batch(self.data.train_images)
             elif self.data.name in ['box2', 'mnist2']:
                 im, _, _ = self.data.get_next_batch(self.data.train_images)
-            elif self.data.name in ['robot64', 'mpii64', 'mpi128', 'nyuv2', 'robot128', 'viper64', 'viper128']:
+            elif self.data.name in ['robot64', 'mpii64', 'mpi128', 'nyuv2', 'robot128', 'viper64', 'viper128', 'kitti128']:
                 im = self.data.get_next_batch(self.data.train_images)
             else:
                 logging.error('%s data not supported' % self.data.name)
@@ -151,7 +157,7 @@ class BaseDemo(object):
                 im, motion, _, _ = self.data.get_next_batch(self.data.test_images)
             elif self.data.name in ['box2', 'mnist2']:
                 im, motion, _ = self.data.get_next_batch(self.data.test_images)
-            elif self.data.name in ['robot64', 'mpii64', 'mpi128', 'nyuv2', 'robot128', 'viper64', 'viper128']:
+            elif self.data.name in ['robot64', 'mpii64', 'mpi128', 'nyuv2', 'robot128', 'viper64', 'viper128', 'kitti128']:
                 im, motion = self.data.get_next_batch(self.data.test_images), None
             elif self.data.name in ['mpii64_sample']:
                 im, motion = self.data.get_next_batch(self.data.test_images), None

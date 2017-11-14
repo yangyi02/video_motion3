@@ -28,6 +28,7 @@
 | 09   |  |  |  | viper128, m_range=2, image_size=128, num_frame=3 |
 | 10   |  |  |  | box, m_range=2, image_size=32, num_frame=3, rand_noise=0.4 |
 | 11   |  |  |  | robot128, m_range=2, image_size=128, num_frame=3, rand_noise=0.4 |
+| 12   |  |  |  | kitti128, m_range=2, image_size=128, num_frame=3 |
 
 ### Take Home Message
 

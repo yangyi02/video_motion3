@@ -2,6 +2,7 @@ import numpy
 import cv2
 import matplotlib.pyplot as plt
 import matplotlib.colors as cl
+import png
 
 
 def visualize_flow(flow, max_flow=None, mode='Y'):
@@ -76,7 +77,7 @@ def flow_to_image(flow, max_flow=None):
     else:
         maxrad = numpy.sqrt(max_flow ** 2 + max_flow ** 2)
 
-    # print "max flow: %.4f\nflow range:\nu = %.3f .. %.3f\nv = %.3f .. %.3f" % (maxrad, minu, maxu, minv, maxv)
+    print "max flow: %.4f\nflow range:\nu = %.3f .. %.3f\nv = %.3f .. %.3f" % (maxrad, minu, maxu, minv, maxv)
 
     u = u/(maxrad + numpy.finfo(float).eps)
     v = v/(maxrad + numpy.finfo(float).eps)
@@ -216,7 +217,7 @@ def read_flow_png(flow_file):
     flow_direct = flow_object.asDirect()
     flow_data = list(flow_direct[2])
     (w, h) = flow_direct[3]['size']
-    flow = np.zeros((h, w, 3), dtype=np.float64)
+    flow = numpy.zeros((h, w, 3), dtype=numpy.float64)
     for i in range(len(flow_data)):
         flow[i, :, 0] = flow_data[i][0::3]
         flow[i, :, 1] = flow_data[i][1::3]
@@ -228,12 +229,13 @@ def read_flow_png(flow_file):
     flow[invalid_idx, 1] = 0
     return flow
 
+
 def write_flow_png(flo, flow_file):
     h, w, _ = flo.shape
-    out_flo = np.ones((h, w, 3), dtype=np.float32)
-    out_flo[:,:,0] = np.maximum(np.minimum(flo[:,:,0]*64.0 + 2**15, 2**16-1), 0)
-    out_flo[:,:,1] = np.maximum(np.minimum(flo[:,:,1]*64.0 + 2**15, 2**16-1), 0)
-    out_flo = out_flo.astype(np.uint16)
+    out_flo = numpy.ones((h, w, 3), dtype=numpy.float32)
+    out_flo[:,:,0] = numpy.maximum(numpy.minimum(flo[:,:,0]*64.0 + 2**15, 2**16-1), 0)
+    out_flo[:,:,1] = numpy.maximum(numpy.minimum(flo[:,:,1]*64.0 + 2**15, 2**16-1), 0)
+    out_flo = out_flo.astype(numpy.uint16)
 
     with open(flow_file, 'wb') as f:
         writer = png.Writer(width=w, height=h, bitdepth=16)

@@ -6,6 +6,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.autograd import Variable
 import torch.nn.functional as F
+import cv2
 
 from learning_args import parse_args
 from base_demo import BaseDemo
@@ -44,7 +45,7 @@ class Demo(BaseDemo):
                 im, _, _, _ = self.data.get_next_batch(self.data.train_images)
             elif self.data.name in ['box2', 'mnist2']:
                 im, _, _ = self.data.get_next_batch(self.data.train_images)
-            elif self.data.name in ['robot64', 'mpii64', 'mpi128', 'nyuv2', 'robot128', 'viper64', 'viper128']:
+            elif self.data.name in ['robot64', 'mpii64', 'mpi128', 'nyuv2', 'robot128', 'viper64', 'viper128', 'kitti128']:
                 im = self.data.get_next_batch(self.data.train_images)
             else:
                 logging.error('%s data not supported' % self.data.name)
@@ -84,11 +85,13 @@ class Demo(BaseDemo):
                 im, motion, _, _ = self.data.get_next_batch(self.data.test_images)
             elif self.data.name in ['box2', 'mnist2']:
                 im, motion, _ = self.data.get_next_batch(self.data.test_images)
-            elif self.data.name in ['robot64', 'mpii64', 'mpi128', 'nyuv2', 'robot128', 'viper64', 'viper128']:
+            elif self.data.name in ['robot64', 'mpii64', 'mpi128', 'nyuv2', 'robot128', 'viper64', 'viper128', 'kitti128']:
                 im, motion = self.data.get_next_batch(self.data.test_images), None
             elif self.data.name in ['mpii64_sample']:
                 im, motion = self.data.get_next_batch(self.data.test_images), None
                 im = im[:, -self.num_frame:, :, :, :]
+            elif self.data.name in ['kitti128_sample']:
+                im, motion = self.data.get_next_batch(self.data.test_images)
             else:
                 logging.error('%s data not supported' % self.data.name)
                 sys.exit()
@@ -109,6 +112,17 @@ class Demo(BaseDemo):
 
             if motion is None:
                 gt_motion = None
+            elif self.data.name in ['kitti128_sample']:
+                gt_motion = motion
+                flow = flow.cpu().data.numpy()
+                flow = numpy.transpose(flow, (0, 2, 3, 1))
+                flow = flow / 128 * 370
+                for i in range(flow.shape[0]):
+                    tmp_flow = cv2.resize(flow[i, :, :, :], (370, 370), interpolation=cv2.INTER_CUBIC)
+                    error = numpy.sqrt(numpy.sum(numpy.square(tmp_flow - gt_motion[i, :, :, 0:2]), axis=2)) * gt_motion[i, :, :, 2]
+                    # flo_true_mag = numpy.sqrt(numpy.sum(numpy.square(gt_motion[:, :, 0:2]), axis=2))
+                    # error_count = (error > 3) & (error / flo_true_mag > 0.05)
+                    test_epe.append(numpy.sum(error))
             else:
                 gt_motion = motion[:, -2, :, :, :]
                 gt_motion = Variable(torch.from_numpy(gt_motion).float())
