@@ -30,7 +30,9 @@ class BaseVisualizer(object):
             img[y1:y2, x1:x2, :] = curr_im
 
             if i > 0:
-                im_diff = abs(curr_im - prev_im)
+                im_diff = numpy.max(numpy.abs(curr_im - prev_im), 2)
+                cmap = plt.get_cmap('jet')
+                im_diff = cmap(im_diff)[:, :, 0:3]
                 x1, y1, x2, y2 = self.get_img_coordinate(2, i)
                 img[y1:y2, x1:x2, :] = im_diff
             prev_im = curr_im
@@ -39,7 +41,9 @@ class BaseVisualizer(object):
         x1, y1, x2, y2 = self.get_img_coordinate(1, self.num_frame)
         img[y1:y2, x1:x2, :] = im_output
 
-        im_diff = numpy.abs(im_output - prev_im)
+        im_diff = numpy.max(numpy.abs(im_output - prev_im), 2)
+        cmap = plt.get_cmap('jet')
+        im_diff = cmap(im_diff)[:, :, 0:3]
         x1, y1, x2, y2 = self.get_img_coordinate(2, self.num_frame - 1)
         img[y1:y2, x1:x2, :] = im_diff
 
@@ -47,7 +51,9 @@ class BaseVisualizer(object):
         x1, y1, x2, y2 = self.get_img_coordinate(1, self.num_frame + 1)
         img[y1:y2, x1:x2, :] = im_pred
 
-        im_diff = numpy.abs(im_pred - im_output)
+        im_diff = numpy.max(numpy.abs(im_pred - im_output), 2)
+        cmap = plt.get_cmap('jet')
+        im_diff = cmap(im_diff)[:, :, 0:3]
         x1, y1, x2, y2 = self.get_img_coordinate(2, self.num_frame)
         img[y1:y2, x1:x2, :] = im_diff
 

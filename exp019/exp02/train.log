@@ -1,0 +1,21 @@
+[INFO 2017-11-15 18:53:37,967 demo.py:192] Namespace(augment_reverse=False, batch_size=64, bg_move=True, bg_noise=0.5, data='box_complex', diff_div_thresh=1.25, display=False, display_all=False, fg_noise=0.1, fixed_data=False, hist_equal=False, image_channel=3, image_size=32, init_model_path='', learning_rate=0.001, max_diff_thresh=0.1, min_diff_thresh=0.01, motion_range=2, motion_type='affine', net_depth=6, num_frame=2, num_objects=1, rand_noise=0, save_dir='./', save_display=False, save_display_dir='./', save_interval=100, seed=111, test=False, test_all=False, test_epoch=20, test_gt=False, test_interval=200, train=True, train_epoch=2000)
+[INFO 2017-11-15 18:53:40,276 demo.py:73] epoch 0, train loss: 24496.26, average train loss: 24496.26, base loss: 26844.49
+[INFO 2017-11-15 18:53:40,684 demo.py:73] epoch 1, train loss: 24744.04, average train loss: 24620.15, base loss: 27358.27
+[INFO 2017-11-15 18:53:41,075 demo.py:73] epoch 2, train loss: 24907.26, average train loss: 24715.85, base loss: 27326.78
+[INFO 2017-11-15 18:53:41,478 demo.py:73] epoch 3, train loss: 24151.94, average train loss: 24574.87, base loss: 27274.09
+[INFO 2017-11-15 18:53:41,881 demo.py:73] epoch 4, train loss: 23136.27, average train loss: 24287.15, base loss: 27267.34
+[INFO 2017-11-15 18:53:42,284 demo.py:73] epoch 5, train loss: 25081.04, average train loss: 24419.47, base loss: 27441.85
+[INFO 2017-11-15 18:53:42,686 demo.py:73] epoch 6, train loss: 24016.71, average train loss: 24361.93, base loss: 27493.77
+[INFO 2017-11-15 18:53:43,084 demo.py:73] epoch 7, train loss: 24628.03, average train loss: 24395.19, base loss: 27546.22
+[INFO 2017-11-15 18:53:43,498 demo.py:73] epoch 8, train loss: 23918.38, average train loss: 24342.21, base loss: 27418.96
+[INFO 2017-11-15 18:53:43,897 demo.py:73] epoch 9, train loss: 24780.76, average train loss: 24386.07, base loss: 27559.79
+[INFO 2017-11-15 18:53:44,296 demo.py:73] epoch 10, train loss: 23714.90, average train loss: 24325.05, base loss: 27505.98
+[INFO 2017-11-15 18:53:44,700 demo.py:73] epoch 11, train loss: 23831.49, average train loss: 24283.92, base loss: 27521.98
+[INFO 2017-11-15 18:53:45,098 demo.py:73] epoch 12, train loss: 23476.35, average train loss: 24221.80, base loss: 27467.97
+[INFO 2017-11-15 18:53:45,497 demo.py:73] epoch 13, train loss: 23552.88, average train loss: 24174.02, base loss: 27504.10
+[INFO 2017-11-15 18:53:45,890 demo.py:73] epoch 14, train loss: 23473.28, average train loss: 24127.31, base loss: 27422.15
+[INFO 2017-11-15 18:53:46,288 demo.py:73] epoch 15, train loss: 23063.20, average train loss: 24060.80, base loss: 27435.79
+[INFO 2017-11-15 18:53:46,684 demo.py:73] epoch 16, train loss: 23089.52, average train loss: 24003.66, base loss: 27436.89
+[INFO 2017-11-15 18:53:47,080 demo.py:73] epoch 17, train loss: 24281.50, average train loss: 24019.10, base loss: 27463.27
+[INFO 2017-11-15 18:53:47,482 demo.py:73] epoch 18, train loss: 23556.05, average train loss: 23994.73, base loss: 27461.09
+[INFO 2017-11-15 18:53:47,881 demo.py:73] epoch 19, train loss: 23964.72, average train loss: 23993.23, base loss: 27477.41

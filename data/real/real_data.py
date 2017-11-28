@@ -32,6 +32,9 @@ class RealData(object):
             numpy.random.seed(args.seed)
         self.rand_noise = args.rand_noise
         self.augment_reverse = args.augment_reverse
+        self.hist_equal = args.hist_equal
+        if args.hist_equal:
+            self.clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))
 
     def motion_dict(self):
         m_range = self.m_range
@@ -74,10 +77,18 @@ class RealData(object):
             image_names = meta[idx[cnt]]
             for j in range(len(image_names)):
                 if im_channel == 1:
-                    image = numpy.array(Image.open(image_names[j]).convert('L')) / 255.0
+                    image = numpy.array(Image.open(image_names[j]).convert('L'))
+                    if self.hist_equal:
+                        image = self.clahe.apply(image)
+                    image = image / 255.0
                     image = numpy.expand_dims(image, 3)
                 elif im_channel == 3:
-                    image = numpy.array(Image.open(image_names[j])) / 255.0
+                    image = numpy.array(Image.open(image_names[j]))
+                    if self.hist_equal:
+                        image[:, :, 0] = self.clahe.apply(image[:, :, 0])
+                        image[:, :, 1] = self.clahe.apply(image[:, :, 1])
+                        image[:, :, 2] = self.clahe.apply(image[:, :, 2])
+                    image = image / 255.0
                 if j == 0:
                     height, width = image.shape[0], image.shape[1]
                     idx_h = numpy.random.randint(0, height + 1 - im_size)

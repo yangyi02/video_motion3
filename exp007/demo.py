@@ -44,7 +44,7 @@ class Demo(BaseDemo):
                 im, _, _, _ = self.data.get_next_batch(self.data.train_images)
             elif self.data.name in ['box2', 'mnist2']:
                 im, _, _ = self.data.get_next_batch(self.data.train_images)
-            elif self.data.name in ['robot64', 'mpii64', 'mpi128', 'nyuv2', 'robot128', 'viper64', 'viper128']:
+            elif self.data.name in ['robot64', 'mpii64', 'mpi128', 'nyuv2', 'robot128', 'viper64', 'viper128', 'robot128c']:
                 im = self.data.get_next_batch(self.data.train_images)
             else:
                 logging.error('%s data not supported' % self.data.name)
@@ -84,7 +84,7 @@ class Demo(BaseDemo):
                 im, motion, _, _ = self.data.get_next_batch(self.data.test_images)
             elif self.data.name in ['box2', 'mnist2']:
                 im, motion, _ = self.data.get_next_batch(self.data.test_images)
-            elif self.data.name in ['robot64', 'mpii64', 'mpi128', 'nyuv2', 'robot128', 'viper64', 'viper128']:
+            elif self.data.name in ['robot64', 'mpii64', 'mpi128', 'nyuv2', 'robot128', 'viper64', 'viper128', 'robot128c']:
                 im, motion = self.data.get_next_batch(self.data.test_images), None
             elif self.data.name in ['mpii64_sample']:
                 im, motion = self.data.get_next_batch(self.data.test_images), None

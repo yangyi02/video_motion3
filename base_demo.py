@@ -15,6 +15,7 @@ from data.synthetic.box2_data import Box2Data
 from data.synthetic.mnist2_data import Mnist2Data
 from data.real.robot64_data import Robot64Data
 from data.real.robot128_data import Robot128Data
+from data.real.robot128c_data import Robot128cData
 from data.real.mpii64_data import Mpii64Data
 from data.real.mpii128_data import Mpii128Data
 from data.real.mpii64_sample import Mpii64Sample
@@ -46,6 +47,7 @@ class BaseDemo(object):
         self.im_channel = args.image_channel
         self.num_frame = args.num_frame
         self.m_range = args.motion_range
+        self.net_depth = args.net_depth
         if args.data == 'box':
             self.data = BoxData(args)
         elif args.data == 'box_complex':
@@ -60,6 +62,8 @@ class BaseDemo(object):
             self.data = Robot64Data(args)
         elif args.data == 'robot128':
             self.data = Robot128Data(args)
+        elif args.data == 'robot128c':
+            self.data = Robot128cData(args)
         elif args.data == 'mpii64':
             self.data = Mpii64Data(args)
         elif args.data == 'mpii128':
@@ -104,7 +108,7 @@ class BaseDemo(object):
                 im, _, _, _ = self.data.get_next_batch(self.data.train_images)
             elif self.data.name in ['box2', 'mnist2']:
                 im, _, _ = self.data.get_next_batch(self.data.train_images)
-            elif self.data.name in ['robot64', 'mpii64', 'mpi128', 'nyuv2', 'robot128', 'viper64', 'viper128', 'kitti128']:
+            elif self.data.name in ['robot64', 'mpii64', 'mpi128', 'nyuv2', 'robot128', 'viper64', 'viper128', 'kitti128', 'robot128c']:
                 im = self.data.get_next_batch(self.data.train_images)
             else:
                 logging.error('%s data not supported' % self.data.name)
@@ -157,7 +161,7 @@ class BaseDemo(object):
                 im, motion, _, _ = self.data.get_next_batch(self.data.test_images)
             elif self.data.name in ['box2', 'mnist2']:
                 im, motion, _ = self.data.get_next_batch(self.data.test_images)
-            elif self.data.name in ['robot64', 'mpii64', 'mpi128', 'nyuv2', 'robot128', 'viper64', 'viper128', 'kitti128']:
+            elif self.data.name in ['robot64', 'mpii64', 'mpi128', 'nyuv2', 'robot128', 'viper64', 'viper128', 'kitti128', 'robot128c']:
                 im, motion = self.data.get_next_batch(self.data.test_images), None
             elif self.data.name in ['mpii64_sample']:
                 im, motion = self.data.get_next_batch(self.data.test_images), None

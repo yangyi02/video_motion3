@@ -23,7 +23,6 @@
 | 03   |  |  |  | mnist, m_range=4, image_size=32, num_frame=4, bg_move |
 | 04   |  |  |  | robot64, m_range=4, image_size=64, num_frame=4 |
 | 05   |  |  |  | mpii64, m_range=4, image_size=64, num_frame=4 |
-| 06   |  |  |  | nyuv2, m_range=4, image_size=64, num_frame=4 |
 | 07   |  |  |  | robot128, m_range=4, image_size=128, num_frame=4 |
 | 08   |  |  |  | viper64, m_range=4, image_size=64, num_frame=4 |
 | 09   |  |  |  | viper128, m_range=4, image_size=128, num_frame=4 |

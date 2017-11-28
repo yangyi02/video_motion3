@@ -22,7 +22,6 @@
 | 03   |  |  |  | mnist, m_range=2, image_size=32, num_frame=5, bg_move |
 | 04   |  |  |  | robot64, m_range=2, image_size=64, num_frame=5 |
 | 05   |  |  |  | mpii64, m_range=2, image_size=64, num_frame=5 |
-| 06   |  |  |  | nyuv2, m_range=2, image_size=64, num_frame=5 |
 
 ### Take Home Message
 

@@ -1,0 +1,503 @@
+[INFO 2017-11-18 19:41:17,900 demo.py:192] Namespace(augment_reverse=False, batch_size=32, bg_move=False, bg_noise=0.5, data='robot128', diff_div_thresh=1.25, display=True, display_all=False, fg_noise=0.1, fixed_data=False, hist_equal=False, image_channel=3, image_size=128, init_model_path='./model.pth', learning_rate=0.001, max_diff_thresh=0.1, min_diff_thresh=0.01, motion_range=1, motion_type='affine', net_depth=7, num_frame=4, num_objects=1, rand_noise=0, save_dir='./', save_display=True, save_display_dir='./', save_interval=100, seed=111, test=True, test_all=False, test_epoch=20, test_gt=False, test_interval=100, train=False, train_epoch=1000)
+max flow: 0.0225
+flow range:
+u = -0.021 .. 0.015
+v = -0.020 .. 0.010
+max flow: 31.4446
+flow range:
+u = -10.727 .. 31.385
+v = -2.617 .. 2.561
+Constructing pyramid...done!
+Pyramid level 5
+Pyramid level 4
+Pyramid level 3
+Pyramid level 2
+Pyramid level 1
+Pyramid level 0
+max flow: 2.3035
+flow range:
+u = -2.222 .. 1.289
+v = -1.962 .. 0.555
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
+max flow: 1.8369
+flow range:
+u = -0.359 .. 0.803
+v = -1.706 .. 0.115
+max flow: 0.0341
+flow range:
+u = -0.024 .. 0.017
+v = -0.034 .. 0.007
+max flow: 8.2400
+flow range:
+u = -5.406 .. 1.823
+v = -7.153 .. 4.953
+Constructing pyramid...done!
+Pyramid level 5
+Pyramid level 4
+Pyramid level 3
+Pyramid level 2
+Pyramid level 1
+Pyramid level 0
+max flow: 10.7087
+flow range:
+u = -4.024 .. 6.787
+v = -9.875 .. 4.688
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
+max flow: 1.5730
+flow range:
+u = -1.147 .. 0.209
+v = -1.260 .. 0.126
+max flow: 0.0250
+flow range:
+u = -0.025 .. 0.007
+v = -0.009 .. 0.016
+max flow: 2.2350
+flow range:
+u = -1.810 .. 2.158
+v = -2.210 .. 1.746
+Constructing pyramid...done!
+Pyramid level 5
+Pyramid level 4
+Pyramid level 3
+Pyramid level 2
+Pyramid level 1
+Pyramid level 0
+max flow: 2.2242
+flow range:
+u = -1.935 .. 0.677
+v = -2.131 .. 1.395
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
+max flow: 1.5570
+flow range:
+u = -1.475 .. 0.126
+v = -0.155 .. 0.680
+max flow: 0.0335
+flow range:
+u = -0.032 .. 0.009
+v = -0.007 .. 0.033
+max flow: 4.5000
+flow range:
+u = -1.590 .. 4.478
+v = -3.983 .. 4.079
+Constructing pyramid...done!
+Pyramid level 5
+Pyramid level 4
+Pyramid level 3
+Pyramid level 2
+Pyramid level 1
+Pyramid level 0
+max flow: 2.2738
+flow range:
+u = -1.220 .. 0.683
+v = -0.500 .. 2.147
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
+max flow: 1.3945
+flow range:
+u = -0.497 .. 0.127
+v = -0.212 .. 1.360
+max flow: 0.0259
+flow range:
+u = -0.006 .. 0.015
+v = -0.005 .. 0.025
+max flow: 5.4557
+flow range:
+u = -1.925 .. 2.396
+v = -5.271 .. 2.092
+Constructing pyramid...done!
+Pyramid level 5
+Pyramid level 4
+Pyramid level 3
+Pyramid level 2
+Pyramid level 1
+Pyramid level 0
+max flow: 1.0049
+flow range:
+u = -0.686 .. 0.703
+v = -0.652 .. 0.931
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
+max flow: 0.2972
+flow range:
+u = -0.050 .. 0.172
+v = -0.050 .. 0.280
+max flow: 0.0629
+flow range:
+u = -0.032 .. 0.038
+v = -0.062 .. 0.033
+max flow: 13.8530
+flow range:
+u = -12.964 .. 9.690
+v = -9.266 .. 8.170
+Constructing pyramid...done!
+Pyramid level 5
+Pyramid level 4
+Pyramid level 3
+Pyramid level 2
+Pyramid level 1
+Pyramid level 0
+max flow: 15.2349
+flow range:
+u = -2.376 .. 14.520
+v = -10.023 .. 8.548
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
+max flow: 11.1091
+flow range:
+u = -0.421 .. 3.229
+v = -10.736 .. 0.598
+max flow: 0.0218
+flow range:
+u = -0.009 .. 0.021
+v = -0.015 .. 0.009
+max flow: 6.3924
+flow range:
+u = -6.282 .. 2.995
+v = -6.348 .. 3.038
+Constructing pyramid...done!
+Pyramid level 5
+Pyramid level 4
+Pyramid level 3
+Pyramid level 2
+Pyramid level 1
+Pyramid level 0
+max flow: 1.1253
+flow range:
+u = -0.371 .. 0.927
+v = -0.940 .. 0.404
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
+max flow: 0.4449
+flow range:
+u = -0.055 .. 0.356
+v = -0.280 .. 0.080
+max flow: 0.0389
+flow range:
+u = -0.008 .. 0.038
+v = -0.010 .. 0.022
+max flow: 15.4950
+flow range:
+u = -15.389 .. 3.652
+v = -1.805 .. 3.431
+Constructing pyramid...done!
+Pyramid level 5
+Pyramid level 4
+Pyramid level 3
+Pyramid level 2
+Pyramid level 1
+Pyramid level 0
+max flow: 1.3368
+flow range:
+u = -0.583 .. 1.229
+v = -0.686 .. 0.819
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
+max flow: 0.4321
+flow range:
+u = -0.058 .. 0.423
+v = -0.097 .. 0.143
+max flow: 0.0368
+flow range:
+u = -0.020 .. 0.020
+v = -0.036 .. 0.010
+max flow: 6.3576
+flow range:
+u = -3.080 .. 2.461
+v = -6.059 .. 3.545
+Constructing pyramid...done!
+Pyramid level 5
+Pyramid level 4
+Pyramid level 3
+Pyramid level 2
+Pyramid level 1
+Pyramid level 0
+max flow: 2.2790
+flow range:
+u = -1.509 .. 1.349
+v = -2.083 .. 0.634
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
+max flow: 1.8574
+flow range:
+u = -0.368 .. 0.732
+v = -1.756 .. 0.168
+max flow: 0.0240
+flow range:
+u = -0.006 .. 0.022
+v = -0.006 .. 0.017
+max flow: 4.7448
+flow range:
+u = -1.405 .. 1.771
+v = -4.581 .. 1.736
+Constructing pyramid...done!
+Pyramid level 5
+Pyramid level 4
+Pyramid level 3
+Pyramid level 2
+Pyramid level 1
+Pyramid level 0
+max flow: 1.4185
+flow range:
+u = -0.275 .. 1.217
+v = -0.299 .. 1.125
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
+max flow: 1.1408
+flow range:
+u = -0.092 .. 1.119
+v = -0.149 .. 0.360
+max flow: 0.0338
+flow range:
+u = -0.025 .. 0.025
+v = -0.031 .. 0.017
+max flow: 7.6429
+flow range:
+u = -2.842 .. 2.503
+v = -7.605 .. 3.657
+Constructing pyramid...done!
+Pyramid level 5
+Pyramid level 4
+Pyramid level 3
+Pyramid level 2
+Pyramid level 1
+Pyramid level 0
+max flow: 2.3034
+flow range:
+u = -1.974 .. 1.833
+v = -1.512 .. 1.029
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
+max flow: 0.9642
+flow range:
+u = -0.816 .. 0.321
+v = -0.604 .. 0.081
+max flow: 0.0375
+flow range:
+u = -0.012 .. 0.030
+v = -0.006 .. 0.023
+max flow: 29.7034
+flow range:
+u = -11.923 .. 29.646
+v = -3.265 .. 4.993
+Constructing pyramid...done!
+Pyramid level 5
+Pyramid level 4
+Pyramid level 3
+Pyramid level 2
+Pyramid level 1
+Pyramid level 0
+max flow: 2.7085
+flow range:
+u = -0.127 .. 2.689
+v = -0.939 .. 0.980
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
+max flow: 2.2853
+flow range:
+u = -0.117 .. 2.279
+v = -0.269 .. 0.187
+max flow: 0.0210
+flow range:
+u = -0.006 .. 0.017
+v = -0.005 .. 0.018
+max flow: 1.9460
+flow range:
+u = -1.132 .. 1.324
+v = -1.935 .. 1.614
+Constructing pyramid...done!
+Pyramid level 5
+Pyramid level 4
+Pyramid level 3
+Pyramid level 2
+Pyramid level 1
+Pyramid level 0
+max flow: 1.2363
+flow range:
+u = -0.304 .. 1.227
+v = -0.442 .. 1.014
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
+max flow: 0.6007
+flow range:
+u = -0.055 .. 0.511
+v = -0.048 .. 0.328
+max flow: 0.0183
+flow range:
+u = -0.005 .. 0.017
+v = -0.006 .. 0.014
+max flow: 5.8036
+flow range:
+u = -0.919 .. 0.960
+v = -5.765 .. 1.085
+Constructing pyramid...done!
+Pyramid level 5
+Pyramid level 4
+Pyramid level 3
+Pyramid level 2
+Pyramid level 1
+Pyramid level 0
+max flow: 1.1840
+flow range:
+u = -0.483 .. 1.165
+v = -0.509 .. 0.770
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
+max flow: 0.4551
+flow range:
+u = -0.028 .. 0.410
+v = -0.064 .. 0.247
+max flow: 0.0407
+flow range:
+u = -0.008 .. 0.029
+v = -0.007 .. 0.033
+max flow: 6.0341
+flow range:
+u = -2.457 .. 5.962
+v = -4.508 .. 3.709
+Constructing pyramid...done!
+Pyramid level 5
+Pyramid level 4
+Pyramid level 3
+Pyramid level 2
+Pyramid level 1
+Pyramid level 0
+max flow: 3.0000
+flow range:
+u = -1.154 .. 2.180
+v = -0.424 .. 2.095
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
+max flow: 2.1411
+flow range:
+u = -0.158 .. 1.101
+v = -0.112 .. 1.872
+max flow: 0.0220
+flow range:
+u = -0.010 .. 0.020
+v = -0.016 .. 0.009
+max flow: 29.0316
+flow range:
+u = -28.979 .. 9.233
+v = -3.041 .. 1.425
+Constructing pyramid...done!
+Pyramid level 5
+Pyramid level 4
+Pyramid level 3
+Pyramid level 2
+Pyramid level 1
+Pyramid level 0
+max flow: 1.0059
+flow range:
+u = -0.204 .. 0.873
+v = -0.831 .. 0.125
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
+max flow: 0.1129
+flow range:
+u = -0.047 .. 0.079
+v = -0.106 .. 0.065
+max flow: 0.0197
+flow range:
+u = -0.008 .. 0.012
+v = -0.006 .. 0.017
+max flow: 10.9647
+flow range:
+u = -10.791 .. 6.998
+v = -2.409 .. 3.085
+Constructing pyramid...done!
+Pyramid level 5
+Pyramid level 4
+Pyramid level 3
+Pyramid level 2
+Pyramid level 1
+Pyramid level 0
+max flow: 1.2074
+flow range:
+u = -0.363 .. 0.860
+v = -0.191 .. 0.948
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
+max flow: 0.7300
+flow range:
+u = -0.047 .. 0.632
+v = -0.062 .. 0.396
+max flow: 0.0202
+flow range:
+u = -0.020 .. 0.008
+v = -0.011 .. 0.012
+max flow: 6.0966
+flow range:
+u = -2.077 .. 0.848
+v = -6.056 .. 2.756
+Constructing pyramid...done!
+Pyramid level 5
+Pyramid level 4
+Pyramid level 3
+Pyramid level 2
+Pyramid level 1
+Pyramid level 0
+max flow: 2.2725
+flow range:
+u = -1.867 .. 0.278
+v = -0.534 .. 1.970
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
+max flow: 1.5476
+flow range:
+u = -1.538 .. 0.081
+v = -0.105 .. 0.345
+max flow: 0.0525
+flow range:
+u = -0.036 .. 0.013
+v = -0.047 .. 0.011
+max flow: 6.9594
+flow range:
+u = -4.426 .. 1.208
+v = -6.917 .. 1.826
+Constructing pyramid...done!
+Pyramid level 5
+Pyramid level 4
+Pyramid level 3
+Pyramid level 2
+Pyramid level 1
+Pyramid level 0
+max flow: 4.5085
+flow range:
+u = -3.528 .. 0.531
+v = -3.913 .. 0.479
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
+max flow: 3.0115
+flow range:
+u = -1.872 .. 0.111
+v = -2.387 .. 0.248
+max flow: 0.0738
+flow range:
+u = -0.073 .. 0.011
+v = -0.024 .. 0.021
+max flow: 167.4872
+flow range:
+u = -3.972 .. 3.439
+v = -5.722 .. 167.463
+Constructing pyramid...done!
+Pyramid level 5
+Pyramid level 4
+Pyramid level 3
+Pyramid level 2
+Pyramid level 1
+Pyramid level 0
+[INFO 2017-11-18 19:42:32,952 demo.py:131] average test loss: 18703.66, base loss: 25123.06
+[INFO 2017-11-18 19:42:32,952 demo.py:132] improve_loss: 6419.41, improve_percent: 0.26
+max flow: 4.0372
+flow range:
+u = -3.890 .. 0.393
+v = -2.582 .. 1.539
+Network forward pass using /home/yi/code/video_motion3/flownet2/models/FlowNet2/FlowNet2_weights.caffemodel.h5.
+Succeeded.
+max flow: 2.6798
+flow range:
+u = -2.658 .. 0.213
+v = -0.147 .. 0.775

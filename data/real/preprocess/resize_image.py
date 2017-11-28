@@ -49,6 +49,11 @@ if __name__ == '__main__':
         # It is best to use cv2.INTER_AREA when shrinking an image
         # I didn't see significant difference by using a Gaussian Blur before resize
         # im = cv2.GaussianBlur(im, (5, 5), 0)
+        # Apply contrast normalization before resize image
+        clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))
+        im[:, :, 0] = clahe.apply(im[:, :, 0])
+        im[:, :, 1] = clahe.apply(im[:, :, 1])
+        im[:, :, 2] = clahe.apply(im[:, :, 2])
         im = cv2.resize(im, (new_width, new_height), interpolation=cv2.INTER_AREA)
         new_image_name = os.path.join(output_dir, image_name)
         cv2.imwrite(new_image_name, im)

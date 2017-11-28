@@ -31,6 +31,7 @@ def parse_args():
     arg_parser.add_argument('--image_channel', type=int, default=3)
     arg_parser.add_argument('--motion_range', type=int, default=1)
     arg_parser.add_argument('--num_frame', type=int, default=3)
+    arg_parser.add_argument('--net_depth', type=int, default=6)
 
     arg_parser.add_argument('--data', default='box')
     arg_parser.add_argument('--num_objects', type=int, default=1)
@@ -40,6 +41,7 @@ def parse_args():
     arg_parser.add_argument('--rand_noise', type=float, default=0)
     arg_parser.add_argument('--bg_move', action='store_true')
     arg_parser.add_argument('--augment_reverse', action='store_true')
+    arg_parser.add_argument('--hist_equal', action='store_true')
 
     arg_parser.add_argument('--min_diff_thresh', type=float, default=0.01)
     arg_parser.add_argument('--max_diff_thresh', type=float, default=0.1)
